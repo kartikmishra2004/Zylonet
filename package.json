@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ZyloNet connects people through shared interests and vibrant conversations, creating a dynamic social hub for meaningful interactions.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon src/index.js"
   },
