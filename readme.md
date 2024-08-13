@@ -15,7 +15,7 @@
 1. **Clone the repository:**
 
 ```bash
-    git clone https://github.com/yourusername/ZyloNet.git
+    git clone https://github.com/kartikmishra2004/Zylonet
 ```
 
 2. **Navigate to the project directory:**
