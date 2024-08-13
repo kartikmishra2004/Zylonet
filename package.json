@@ -1,0 +1,22 @@
+{
+  "name": "zylonet",
+  "version": "1.0.0",
+  "description": "ZyloNet connects people through shared interests and vibrant conversations, creating a dynamic social hub for meaningful interactions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [
+    "socialmedia",
+    "network",
+    "chatting"
+  ],
+  "author": "Kartik Mishra",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2",
+    "nodemon": "^3.1.4"
+  }
+}
