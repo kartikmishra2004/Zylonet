@@ -28,11 +28,11 @@ const Signup = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.parse(user),
+                body: JSON.stringify(user),
             });
             console.log(response);
         } catch (error) {
-            console.log("Failed to signup!!")
+            console.log("Failed to signup!!", error);
         }
     }
 
