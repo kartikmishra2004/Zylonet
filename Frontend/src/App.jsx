@@ -1,6 +1,11 @@
 import React from 'react'
 import Signup from './components/Signup'
 import Login from './components/Login'
+import Home from './components/Home'
+import Search from './components/Search'
+import CreatePost from './components/CreatePost'
+import Settings from './components/Settings'
+import Message from './components/Message'
 import {
   BrowserRouter,
   Routes,
@@ -15,6 +20,11 @@ const App = () => {
       <Routes>
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/login' element={<Login />} />
+        <Route exact path='/home' element={<Home />} />
+        <Route exact path='/search' element={<Search />} />
+        <Route exact path='/createpost' element={<CreatePost />} />
+        <Route exact path='/settings' element={<Settings />} />
+        <Route exact path='/message' element={<Message />} />
       </Routes>
     </BrowserRouter>
   )

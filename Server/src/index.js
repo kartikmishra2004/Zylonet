@@ -4,8 +4,15 @@ import connectDb from "./database/dbconnection.js";
 import authRoute from "./routes/auth.route.js";
 import profileRoute from "./routes/profile.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors({
+    origin: ["http://localhost:5173/"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true,
+}))
 
 app.use(express.json());
 
