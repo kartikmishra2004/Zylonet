@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
             userId: userCreated._id.toString(),
         });
     } catch (error) {
-        res.status(400).json({ message: "Failed to signup!!" });
+        next(error);
     }
 }
 
@@ -40,7 +40,7 @@ export const login = async (req, res) => {
             });
         }
     } catch (error) {
-        res.status(400).json({ message: "Failed to Login!!" });
+        next(error);
     }
 }
 
