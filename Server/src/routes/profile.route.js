@@ -1,8 +1,9 @@
 import express from "express";
 import multer from "multer";
-import { profileUpload } from "../controllers/profile.controller.js";
+import { profileUpload } from "../controllers/auth.controller.js";
 import { v4 as uuidv4 } from 'uuid';
 import cloudinary from "cloudinary";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
@@ -22,10 +23,10 @@ const storage = multer.diskStorage({
         const random = uuidv4();
         cb(null, random + "" + file.originalname);
     }
-})
+});
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
-router.route("/upload").post(upload.single('avatar'), profileUpload);
+router.route("/upload").post(upload.single('avatar'), authMiddleware, profileUpload);
 
 export default router;
