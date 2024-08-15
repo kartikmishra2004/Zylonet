@@ -43,3 +43,13 @@ export const login = async (req, res) => {
         res.status(400).json({ message: "Failed to Login!!" });
     }
 }
+
+// Authentication logic
+export const userauth = async (req, res) => {
+    try {
+        const userData = req.user;
+        return res.status(200).json({ userData });
+    } catch (error) {
+        console.log("Error from the userauth route", error)
+    }
+}
