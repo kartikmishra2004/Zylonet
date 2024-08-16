@@ -1,9 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import dog from "../assets/dog.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginIcon from "../assets/loginIcon.png"
+import { useAuth } from "../storage/Auth.jsx"
 
 const Login = () => {
+
+    const [user, setUser] = useState({
+        username: "",
+        password: "",
+    });
+
+    const navigate = useNavigate();
+
+    const { storeTokenInLS } = useAuth();
+
+    const handleChangeInput = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        setUser({
+            ...user,
+            [name]: value,
+        });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+            const res_data = await response.json();
+            if (response.ok) {
+                storeTokenInLS(res_data.token);
+                setUser({
+                    username: "",
+                    password: "",
+                });
+                navigate("/");
+            } else {
+                alert("Failed to login!!");
+            }
+        } catch (error) {
+            console.log("Failed to login!!");
+        }
+    }
+
     return (
         <div>
             <div className="min-h-screen bg-gray-50 text-gray-900 flex justify-center">
@@ -25,13 +71,13 @@ const Login = () => {
                             <div className="w-full flex-1 mt-8">
 
 
-                                <div className="mx-auto max-w-xs">
+                                <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                                     <input
                                         className="w-full px-8 py-4 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        type="text" placeholder="Username" />
+                                        type="text" placeholder="Username" name='username' onChange={handleChangeInput} />
                                     <input
                                         className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                        type="password" placeholder="Password" />
+                                        type="password" placeholder="Password" name='password' onChange={handleChangeInput} />
                                     <button
                                         className="mt-5 tracking-wide font-semibold bg-[#00B855] text-gray-100 w-full py-4 rounded-lg hover:bg-[#22a45e] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                         <img className='w-[25px] invert' src={loginIcon} alt="" />
@@ -45,7 +91,7 @@ const Login = () => {
                                             Signup here
                                         </Link>
                                     </p>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

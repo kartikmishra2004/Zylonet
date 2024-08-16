@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import dog from "../assets/dog.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../storage/Auth.jsx"
 
 const Signup = () => {
 
@@ -10,6 +11,10 @@ const Signup = () => {
         email: "",
         password: "",
     });
+
+    const { storeTokenInLS } = useAuth();
+
+    const navigate = useNavigate();
 
     const handleChangeInput = (e) => {
         let name = e.target.name;
@@ -30,7 +35,19 @@ const Signup = () => {
                 },
                 body: JSON.stringify(user),
             });
-            console.log(response);
+            const res_data = await response.json();
+            if (response.ok) {
+                storeTokenInLS(res_data.token);
+                setUser({
+                    fullName: "",
+                    username: "",
+                    email: "",
+                    password: "",
+                });
+                navigate("/login");
+            } else {
+                alert("Failed to signup!!");
+            }
         } catch (error) {
             console.log("Failed to signup!!", error);
         }

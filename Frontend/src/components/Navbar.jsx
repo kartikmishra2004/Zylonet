@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import logoutIcon from "../assets/power-off.png"
 
 const Navbar = () => {
     return (
@@ -58,7 +59,11 @@ const Navbar = () => {
                     </Link>
                 </div>
             </div>
-            <Link className="flex items-center justify-center w-full h-16 mt-auto bg-gray-200 hover:bg-gray-300" to="/signup">
+            <Link to='/logout' className="flex items-center justify-center w-full h-16 mt-auto bg-gray-200 hover:bg-gray-300">
+                <img className='mt-[0.2rem]' src={logoutIcon} alt="" />
+                <span className="ml-2 text-[#FF3D3D] text-sm font-medium">Logout</span>
+            </Link>
+            <Link className="flex items-center justify-center w-full h-16 bg-gray-200 hover:bg-gray-300" to="/profile">
                 <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
