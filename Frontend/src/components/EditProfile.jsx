@@ -98,10 +98,9 @@ const EditProfile = ({ setShowModal }) => {
                                                     </div>
                                                 </div>
                                             </label>
-                                            <div className="profileImage relative flex items-center justify-center">
-                                                <span className='h-[13rem] flex justify-center items-center overflow-hidden rounded-full'>
-                                                    <img className={`w-[13rem] ${selectFile ? "" : "border-2"} border-[#dbdbdb] rounded-full`} src={selectFile ? imageSrc : user.profile} alt="Profile" />
-                                                </span>
+                                            <div className="mx-auto flex justify-center items-center w-[13rem] h-[13rem] border-2 border-[#dbdbdb] rounded-full overflow-hidden">
+                                                <img className={`object-cover object-center h-[13rem]`} src={selectFile ? imageSrc : user.profile} />
+
                                             </div>
                                             <input type="file" id='uploadFile1' className="hidden" />
                                         </div>
