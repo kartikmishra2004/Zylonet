@@ -20,8 +20,8 @@ const Profile = () => {
         <div className="rounded-t-lg h-32 overflow-hidden">
 
         </div>
-        <div className="mx-auto w-32 h-32 relative -mt-16 border-2 border-[#dbdbdb] rounded-full overflow-hidden">
-          <img className="object-cover object-center h-32" src={user.profile} alt='Woman looking front' />
+        <div className="mx-auto flex justify-center items-center w-32 h-32 relative -mt-16 border-2 border-[#dbdbdb] rounded-full overflow-hidden">
+          <img className="object-cover object-center h-32" src={user.profile} />
         </div>
         <div className="text-center mt-2">
           <h2 className="font-semibold">{user.fullName}</h2>
