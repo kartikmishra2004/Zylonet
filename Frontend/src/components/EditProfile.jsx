@@ -4,17 +4,17 @@ import { useAuth } from '../storage/Auth';
 const EditProfile = ({ setShowModal }) => {
     const { user } = useAuth();
     const { token } = useAuth();
+    const { updateProfile } = useAuth();
 
     const [updatedUser, setUpdatedUser] = useState({
         fullName: user.fullName,
-        username: user.username,
     });
     const [imageSrc, setImageSrc] = useState(null);
-    const [selectFile, setSelectFile] = useState(null); // Change this to store the file itself
+    const [selectFile, setSelectFile] = useState(null);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setSelectFile(file); // Store the file
+        setSelectFile(file);
 
         if (file) {
             const reader = new FileReader();
@@ -47,18 +47,6 @@ const EditProfile = ({ setShowModal }) => {
         setShowModal(false);
     };
 
-    const handleEditProfile = async (e) => {
-        e.preventDefault();
-        closeModal();
-        if (selectFile) {
-            await upload(selectFile); // Pass the selected file to the upload function
-        }
-        // Additional code to handle profile data update can be added here
-    };
-
-    useEffect(() => {
-        handleEditProfile();
-    }, [token]);
 
     const handleEditProfileChange = (e) => {
         let name = e.target.name;
@@ -69,9 +57,21 @@ const EditProfile = ({ setShowModal }) => {
         });
     };
 
+    const updateTheProfile = () => {
+       updateProfile({updatedUser, id: user._id});
+    }
+
+    const handleEditProfile = async (e) => {
+        e.preventDefault();
+        closeModal();
+        if (selectFile) {
+            await upload(selectFile);
+        }
+        updateTheProfile();
+    };
     return (
         <div>
-            <div id="crud-modal" tabIndex="-1" aria-hidden="true" className={`overflow-y-auto backdrop-brightness-50 flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full`}>
+            <div id="crud-modal" tabIndex="-1" className={`overflow-y-auto backdrop-brightness-50 flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full`}>
                 <div className="relative p-4 w-full max-w-[40rem] max-h-full">
                     <div className="relative bg-white rounded-lg shadow">
                         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
@@ -79,7 +79,7 @@ const EditProfile = ({ setShowModal }) => {
                                 Edit your profile
                             </h3>
                             <button onClick={closeModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
-                                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
                                 <span className="sr-only">Close modal</span>
@@ -109,10 +109,6 @@ const EditProfile = ({ setShowModal }) => {
                                 <div className="col-span-2">
                                     <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
                                     <input value={updatedUser.fullName} onChange={handleEditProfileChange} type="text" name="fullName" id="fullName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your name" required />
-                                </div>
-                                <div className="col-span-2">
-                                    <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Username</label>
-                                    <input value={updatedUser.username} onChange={handleEditProfileChange} type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your username" required />
                                 </div>
                             </div>
                             <button type="submit" className="text-white inline-flex items-center bg-[#00B855] hover:bg-[#22a45e] transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">

@@ -50,24 +50,24 @@ const Profile = () => {
           </li>
         </ul>
         <div className="p-4 flex flex-col justify-evenly items-center border-t mx-8 mt-2">
-          <div class="columns-1 md:columns-2 xl:columns-3 gap-7 ">
-            <div class=" break-inside-avoid mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031162.jpg" alt="Gallery image" />
+          <div className="columns-1 md:columns-2 xl:columns-3 gap-7 ">
+            <div className=" break-inside-avoid mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031162.jpg" alt="Gallery image" />
             </div>
-            <div class=" break-inside-avoid  mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031232.jpg" alt="Gallery image" />
+            <div className=" break-inside-avoid  mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031232.jpg" alt="Gallery image" />
             </div>
-            <div class=" break-inside-avoid  mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031357.jpg" alt="Gallery image" />
+            <div className=" break-inside-avoid  mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031357.jpg" alt="Gallery image" />
             </div>
-            <div class=" break-inside-avoid  mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031375.jpg" alt="Gallery image" />
+            <div className=" break-inside-avoid  mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031375.jpg" alt="Gallery image" />
             </div>
-            <div class=" break-inside-avoid  mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031396.jpg" alt="Gallery image" />
+            <div className=" break-inside-avoid  mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031396.jpg" alt="Gallery image" />
             </div>
-            <div class=" break-inside-avoid  mb-8">
-              <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
+            <div className=" break-inside-avoid  mb-8">
+              <img className="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
             </div>
           </div>
         </div>

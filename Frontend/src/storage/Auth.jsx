@@ -50,7 +50,30 @@ export const AuthProvider = ({ children }) => {
         }
     }, [token]);
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token }}>
+    const updateProfile = async ({ updatedUser, id }) => {
+        // Calling api for updating user
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/auth/update/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(updatedUser),
+            });
+            const updateRes_data = await response.json();
+            if (response.ok) {
+                setUser({
+                    ...user,
+                    fullName: updateRes_data.user.fullName,
+                });
+            }
+        } catch (error) {
+            console.log("Failed to update user", error);
+        }
+    }
+
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile }}>
         {children}
     </AuthContext.Provider>
 
