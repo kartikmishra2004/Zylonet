@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import logoutIcon from "../assets/power-off.png"
+import { useAuth } from "../storage/Auth"
 
 const Navbar = () => {
+
+    const { isLoggedIn } = useAuth();
+
     return (
         <div className="flex fixed flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-gray-100 rounded">
             <Link className="flex text-[#00B855] items-center w-full px-3 mt-3" to="/">
@@ -67,7 +71,7 @@ const Navbar = () => {
                 </svg>
                 <span className="ml-2 text-sm font-medium">Account</span>
             </Link>
-            <Link to='/logout' className="flex items-center pl-[4.5rem] w-full h-16 bg-gray-200 hover:bg-gray-300">
+            <Link to='/logout' className={`${isLoggedIn ? "flex" : "hidden"} items-center pl-[4.5rem] w-full h-16 bg-gray-200 hover:bg-gray-300`}>
                 <img className='mt-[0.2rem]' src={logoutIcon} alt="" />
                 <span className="ml-2 text-[#FF3D3D] text-sm font-medium">Logout</span>
             </Link>

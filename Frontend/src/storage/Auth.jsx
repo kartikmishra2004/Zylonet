@@ -1,4 +1,5 @@
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 // Context
 export const AuthContext = createContext();
@@ -63,10 +64,13 @@ export const AuthProvider = ({ children }) => {
             });
             const updateRes_data = await response.json();
             if (response.ok) {
+                toast.success("Profile updated successfully!!");
                 setUser({
                     ...user,
                     fullName: updateRes_data.user.fullName,
                 });
+            } else {
+                toast.error("Failed to updated profile!!");
             }
         } catch (error) {
             console.log("Failed to update user", error);

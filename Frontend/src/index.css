@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toastbody{
+    font-size: small;
+}
+
+.toast-position{
+    top: 0.5rem !important;
+}

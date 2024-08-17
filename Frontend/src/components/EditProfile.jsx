@@ -37,7 +37,6 @@ const EditProfile = ({ setShowModal }) => {
                 },
                 body: formData,
             });
-            console.log(response);
         } catch (error) {
             console.log("Failed to upload image!!", error);
         }
