@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import editIcon from "../assets/editIcon.png"
 import { useAuth } from '../storage/Auth';
+import EditProfile from './EditProfile';
 
 const Profile = () => {
 
+  const [showModal, setShowModal] = useState(false);
+
   const { user } = useAuth();
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  }
 
   return (
     <div className='ml-[18rem]'>
@@ -35,7 +42,7 @@ const Profile = () => {
             </svg>
             <span>Followers: 10k</span>
           </li>
-          <li className="flex flex-col items-center justify-around">
+          <li onClick={handleShowModal} className="flex flex-col items-center justify-around">
             <button className="tracking-wide flex-col rounded-lg flex items-center justify-center focus:shadow-outline focus:outline-none">
               <img className='w-[20px] mr-2' src={editIcon} alt="" />
               <span>Edit profile</span>
@@ -65,6 +72,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {showModal && <EditProfile setShowModal={setShowModal} user={user} />}
     </div>
   )
 }
