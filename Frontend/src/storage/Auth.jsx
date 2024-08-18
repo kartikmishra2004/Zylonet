@@ -68,6 +68,7 @@ export const AuthProvider = ({ children }) => {
                 setUser({
                     ...user,
                     fullName: updateRes_data.user.fullName,
+                    aboutme: updateRes_data.user.aboutme,
                 });
             } else {
                 toast.error("Failed to updated profile!!");

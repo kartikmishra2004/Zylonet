@@ -85,10 +85,11 @@ export const profileUpload = async (req, res) => {
 // User update logic
 export const updateUser = async (req, res) => {
     try {
-        const { fullName } = req.body
+        const { fullName, aboutme } = req.body
         // Create new user object
         const newUser = {};
         if (fullName) { newUser.fullName = fullName }
+        if (aboutme) { newUser.aboutme = aboutme }
 
         // Find the user to be updated and update it
         let user = await User.findById(req.params.id);

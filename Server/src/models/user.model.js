@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
     profile: {
         type: String,
         default: "https://res.cloudinary.com/dlwudcsu1/image/upload/v1723743051/Picsart_24-08-15_23-00-10-662_bix7iy.png",
-    }
+    },
+    aboutme: {
+        type: String,
+        default: "Enter something about yourself",
+    },
 }, { timestamps: true });
 
 // Securing password using bcrypt
