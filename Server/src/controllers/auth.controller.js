@@ -40,6 +40,8 @@ export const login = async (req, res) => {
                 token: await userExist.generateToken(),
                 userId: userExist._id.toString(),
             });
+        } else {
+            res.status(400).json({ message: "Invalid username or password!!" });
         }
     } catch (error) {
         next(error);
@@ -103,6 +105,6 @@ export const updateUser = async (req, res) => {
             res.status(200).json({ message: "Profile updated successfully!!", user });
         }
     } catch (error) {
-        res.status(400).json({ message: "Failed to update user!!" });
+        next(error)
     }
 }

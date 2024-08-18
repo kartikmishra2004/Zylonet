@@ -3,6 +3,7 @@ import "dotenv/config";
 import connectDb from "./database/dbconnection.js";
 import authRoute from "./routes/auth.route.js";
 import profileRoute from "./routes/profile.route.js";
+import postRoute from "./routes/post.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
 
@@ -21,6 +22,9 @@ app.use("/api/v1/auth", authRoute);
 
 // API for Profile upload
 app.use("/api/v1/profile", profileRoute);
+
+// API for post
+app.use("/api/v1/post", postRoute);
 
 app.use(errorMiddleware);
 

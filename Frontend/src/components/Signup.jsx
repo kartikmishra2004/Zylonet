@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import dog from "../assets/dog.png"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../storage/Auth.jsx"
+import { toast } from 'react-toastify';
 
 const Signup = () => {
 
@@ -45,8 +46,10 @@ const Signup = () => {
                     password: "",
                 });
                 navigate("/login");
+                toast.success("Signup successfully!!");
+                toast.success("Login successfully!!");
             } else {
-                alert("Failed to signup!!");
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
             }
         } catch (error) {
             console.log("Failed to signup!!", error);

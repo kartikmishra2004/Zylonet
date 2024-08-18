@@ -3,6 +3,7 @@ import dog from "../assets/dog.png"
 import { Link, useNavigate } from "react-router-dom";
 import loginIcon from "../assets/loginIcon.png"
 import { useAuth } from "../storage/Auth.jsx"
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -42,8 +43,9 @@ const Login = () => {
                     password: "",
                 });
                 navigate("/");
+                toast.success("Login successfully!!");
             } else {
-                alert("Failed to login!!");
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
             }
         } catch (error) {
             console.log("Failed to login!!");

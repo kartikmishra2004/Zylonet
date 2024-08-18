@@ -51,8 +51,9 @@ export const AuthProvider = ({ children }) => {
         }
     }, [token]);
 
+
+    // Calling api for updating user
     const updateProfile = async ({ updatedUser, id }) => {
-        // Calling api for updating user
         try {
             const response = await fetch(`http://localhost:8080/api/v1/auth/update/${id}`, {
                 method: "PUT",
@@ -71,7 +72,7 @@ export const AuthProvider = ({ children }) => {
                     aboutme: updateRes_data.user.aboutme,
                 });
             } else {
-                toast.error("Failed to updated profile!!");
+                toast.error(updateRes_data.extraDetails ? updateRes_data.extraDetails : updateRes_data.message);
             }
         } catch (error) {
             console.log("Failed to update user", error);

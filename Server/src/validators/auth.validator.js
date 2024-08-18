@@ -1,5 +1,18 @@
 import { z } from "zod";
 
+export const editProfileSchema = z.object({
+    fullName: z
+        .string({ required_error: "Name is required!!" })
+        .trim()
+        .min(4, { message: "Name must be atleast 4 characters long!!" })
+        .max(30, { message: "Name cannot be more than 30 characters!!" }),
+    aboutme: z
+        .string({ required_error: "About is required!!" })
+        .trim()
+        .min(1, { message: "About must be atleast 1 character long!!" })
+        .max(400, { message: "Password cannot be more than 400 characters!!" }),
+});
+
 export const loginSchema = z.object({
     username: z
         .string({ required_error: "Username is required!!" })

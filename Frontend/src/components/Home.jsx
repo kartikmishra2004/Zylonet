@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div className='ml-[18rem] text-5xl'>
-      <div className="p-4 flex flex-col justify-evenly items-center border-t mx-8 mt-2">
+      <div className="p-4 flex flex-col justify-evenly items-center border-t mx-8">
         <div className="columns-1 md:columns-2 xl:columns-3 gap-7 ">
           <div className=" break-inside-avoid mb-8">
             <img className="h-auto max-w-full" src="https://pagedone.io/asset/uploads/1688031162.jpg" alt="Gallery image" />

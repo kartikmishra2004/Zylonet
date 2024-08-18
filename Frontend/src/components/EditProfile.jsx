@@ -58,12 +58,15 @@ const EditProfile = ({ setShowModal }) => {
     };
 
     const updateTheProfile = () => {
-       updateProfile({updatedUser, id: user._id});
+        updateProfile({ updatedUser, id: user._id });
     }
 
     const handleEditProfile = async (e) => {
         e.preventDefault();
-        closeModal();
+        if (!updatedUser.fullName || !updatedUser.aboutme) { }
+        else {
+            closeModal();
+        }
         if (selectFile) {
             await upload(selectFile);
         }
@@ -108,11 +111,11 @@ const EditProfile = ({ setShowModal }) => {
                                 </div>
                                 <div className="col-span-2">
                                     <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                                    <input value={updatedUser.fullName} onChange={handleEditProfileChange} type="text" name="fullName" id="fullName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your name" required />
+                                    <input value={updatedUser.fullName} onChange={handleEditProfileChange} type="text" name="fullName" id="fullName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your name" />
                                 </div>
                                 <div className="col-span-2">
                                     <label htmlFor="aboutme" className="block mb-2 text-sm font-medium text-gray-900">About me</label>
-                                    <textarea maxLength='300' value={updatedUser.aboutme} onChange={handleEditProfileChange} rows='5' type="text" name="aboutme" id="aboutme" className="bg-gray-50 resize-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter something about yourself" required />
+                                    <textarea maxLength='300' value={updatedUser.aboutme} onChange={handleEditProfileChange} rows='5' type="text" name="aboutme" id="aboutme" className="bg-gray-50 resize-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter something about yourself" />
                                 </div>
                             </div>
                             <button type="submit" className="text-white inline-flex items-center bg-[#00B855] hover:bg-[#22a45e] transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
