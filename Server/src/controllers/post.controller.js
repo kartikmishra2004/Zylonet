@@ -3,7 +3,7 @@ import cloudinary from "cloudinary";
 import fs from "fs";
 
 // Logic for creating a post
-const createPost = async (req, res) => {
+export const createPost = async (req, res) => {
     try {
         const userData = req.user;
         if (!userData) {
@@ -30,4 +30,13 @@ const createPost = async (req, res) => {
     }
 }
 
-export default createPost;
+// Logic for reading all posts of logged in user
+export const readPost = async (req, res) => {
+    try {
+        const author = req.user._id;
+        const findPosts = await Post.find({ author: author });
+        res.status(200).json(findPosts);
+    } catch (error) {
+        res.status(400).json({ message: "Failed to load posts!!" })
+    }
+}

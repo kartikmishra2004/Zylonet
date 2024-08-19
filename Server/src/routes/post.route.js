@@ -3,7 +3,7 @@ import multer from "multer";
 import { v4 as uuidv4 } from 'uuid';
 import cloudinary from "cloudinary";
 import authMiddleware from "../middlewares/auth.middleware.js";
-import createPost from "../controllers/post.controller.js"
+import { createPost, readPost } from "../controllers/post.controller.js"
 
 const router = express.Router();
 
@@ -27,6 +27,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// Route for create post
 router.route("/createpost").post(upload.single('post'), authMiddleware, createPost);
+
+// Route for read all posts of logged in user
+router.route("/readpost").get(authMiddleware, readPost);
 
 export default router; 
