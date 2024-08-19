@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import editIcon from "../assets/editIcon.png"
 import { useAuth } from '../storage/Auth';
 import EditProfile from './EditProfile';
@@ -7,12 +7,29 @@ import PostCard from "./PostCard";
 const Profile = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const [posts, setPosts] = useState([]);
 
   const { user } = useAuth();
+  const { token } = useAuth();
 
   const handleShowModal = () => {
     setShowModal(true);
   }
+
+  const fetchPosts = async () => {
+    const response = await fetch("http://localhost:8080/api/v1/post/readpost", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const res_data = await response.json();
+    setPosts(res_data);
+  }
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div className='ml-[18rem]'>
@@ -56,7 +73,7 @@ const Profile = () => {
           <p className="text-gray-500 mt-1 text-left">{user.aboutme}</p>
         </div>
         <div className="p-4 flex flex-col justify-evenly items-center border-t mx-8 mt-2">
-          <PostCard />
+          {posts.map(item => (<PostCard key={item._id} title={item.title} caption={item.caption} image={item.image} createdAt={item.createdAt}/>))}
         </div>
       </div>
       {showModal && <EditProfile setShowModal={setShowModal} user={user} />}
