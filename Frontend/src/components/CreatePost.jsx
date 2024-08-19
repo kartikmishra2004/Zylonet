@@ -130,6 +130,7 @@ const CreatePost = () => {
                           Add media
                         </label>
                         <input
+                          accept=".jpg, .jpeg, .png, .gif"
                           ref={fileInputRef}
                           onChange={handleImageChange}
                           name='image'

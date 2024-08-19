@@ -5,8 +5,8 @@ const PostCard = ({ title, caption, image, createdAt }) => {
     return (
         <div>
             <div className="flex flex-col justify-center items-center bg-gray-100 mb-6">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full">
-                    <img src={image} alt="Mountain" className="w-full h-64 object-cover" />
+                <div className="bg-white rounded shadow-md overflow-hidden max-w-lg w-[32rem]">
+                    <img src={image} alt="Mountain" className="w-full h-64 object-contain bg-[#ebebeb]" />
                     <div className="p-6">
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
                         <p className="text-gray-700 leading-tight mb-4">
