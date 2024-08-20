@@ -101,7 +101,7 @@ const CreatePost = () => {
           <div className={`p-2 relative w-full ${selectFile ? "flex" : "hidden"} justify-center`}>
             <div
               title='Remove image'
-              className='absolute left-[65.5%] bg-[#00000034] hover:bg-[#fc3232a0] text-white rounded-full px-5 py-3 mt-2 transition-all duration-300 ease-in-out cursor-pointer'
+              className='absolute md:left-[65.5%] left-[77.5%] bg-[#00000034] hover:bg-[#fc3232a0] text-white rounded-full px-5 py-3 mt-2 transition-all duration-300 ease-in-out cursor-pointer'
               onClick={removeImage}>
               X
             </div>
@@ -116,17 +116,17 @@ const CreatePost = () => {
                 name="caption"
                 rows="3"
                 placeholder="Description"
-                className="block w-full h-48 rounded-md resize-none border-gray-300 shadow-sm focus:border-[#00b855] focus:ring-[#00b855] focus:ring-opacity-50 p-2"
+                className="block w-full md:h-48 h-[8rem] rounded-md resize-none border-gray-300 shadow-sm focus:border-[#00b855] focus:ring-[#00b855] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: "#f6f6f6" }}
               ></textarea>
             </div>
             <div>
               <label
                 htmlFor='example1'
-                className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
+                className="w-full md:h-48 h-[5rem] border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
                 <div>
                   <label title='Upload profile' htmlFor="example1">
-                    <div className='cursor-pointer'>
+                    <div className='cursor-pointer pl-[30px]'>
                       <div className="mx-auto max-w-xs">
                         <label
                           htmlFor="example1"
@@ -148,7 +148,7 @@ const CreatePost = () => {
               </label>
             </div>
           </div>
-          <div className="col-span-full mt-6 p-2">
+          <div className="col-span-full md:mt-6 p-2">
             <button
               disabled={isLodding ? true : false}
               type="submit"
