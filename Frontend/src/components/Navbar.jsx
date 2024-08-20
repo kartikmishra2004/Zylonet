@@ -1,20 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import logoutIcon from "../assets/power-off.png"
 import { useAuth } from "../storage/Auth"
+import { useToggleNav } from './ToggleNav';
+import closeIcon from "../assets/close.png"
 
 const Navbar = () => {
 
+
     const { isLoggedIn } = useAuth();
+    const { nav, handleToggleNav } = useToggleNav();
 
     return (
-        <div className="flex fixed flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-gray-100 rounded">
-            <Link className="flex text-[#00B855] items-center w-full px-3 mt-3" to="/">
-                <svg className="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                        d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
-                </svg>
-                <span className="ml-2 text-gray-800 text-sm font-bold">Zylonet</span>
+        <div className={`z-50 flex ${nav} md:left-0 transition-all jus duration-500 ease-in-out fixed flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-gray-100 rounded`}>
+            <Link className="flex text-[#00B855] justify-between items-center w-full px-3 mt-3" to="/">
+                <div className='flex justify-center items-center'>
+                    <svg className="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+                    </svg>
+                    <span className="ml-2 text-gray-800 text-sm font-bold">Zylonet</span>
+                </div>
+                <div onClick={handleToggleNav} className="sm:hidden rounded-full closeNav text-black w-7 h-7 flex justify-center items-center opacity-80"><img className='w-4' src={closeIcon} alt="" /></div>
             </Link>
             <div className="w-full px-2">
                 <div className="flex flex-col items-center w-full mt-3 border-t border-gray-300">
@@ -79,4 +86,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

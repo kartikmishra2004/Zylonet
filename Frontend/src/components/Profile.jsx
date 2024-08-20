@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import editIcon from "../assets/editIcon.png"
+import React, { useEffect, useState } from 'react';
+import editIcon from "../assets/editIcon.png";
 import { useAuth } from '../storage/Auth';
 import EditProfile from './EditProfile';
 import PostCard from "./PostCard";
-import { Link } from "react-router-dom"
-import heart from "../assets/heart.png"
+import { Link } from "react-router-dom";
+import heart from "../assets/heart.png";
+import menu from "../assets/list.png";
+import { useToggleNav } from "./ToggleNav";
 
 const Profile = () => {
 
@@ -13,6 +15,7 @@ const Profile = () => {
 
   const { user } = useAuth();
   const { token } = useAuth();
+  const { handleToggleNav } = useToggleNav();
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -34,11 +37,11 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className='ml-[15rem]'>
+    <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
       <div
-        className="max-w-2xl sm:max-w-[70rem] xl:max-w-[70rem] mx-auto bg-white shadow-xl rounded-lg text-gray-900">
-        <div className="rounded-t-lg h-32 overflow-hidden">
-
+        className="md:max-w-2xl xl:max-w-[70rem] mx-auto bg-white shadow-xl rounded-lg text-gray-900">
+        <div className="rounded-t-lg h-32">
+          <img onClick={handleToggleNav} className='w-16 p-5 block md:hidden opacity-85' src={menu} alt="" />
         </div>
         <div className="mx-auto flex justify-center items-center w-32 h-32 relative -mt-16 border-2 border-[#dbdbdb] rounded-full overflow-hidden">
           <img className="object-cover object-center h-32" src={user.profile} />
@@ -49,14 +52,14 @@ const Profile = () => {
         </div>
         <ul className="py-4 mt-5 text-gray-700 flex items-center justify-evenly">
           <li className="flex flex-col items-center justify-around">
-            <button className='flex flex-col items-center justify-around'>
-              <img className='w-5' src={heart} alt="" />
+            <button className='text-sm flex flex-col items-center justify-around'>
+              <img className='md:w-5 w-4' src={heart} alt="" />
               <div>Hearts: 1k</div>
             </button>
           </li>
           <li className="flex flex-col items-center justify-between">
-            <button className='flex flex-col items-center justify-around'>
-              <svg className="w-5 fill-current text-[#00B855]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <button className='text-sm flex flex-col items-center justify-around'>
+              <svg className="md:w-5 w-4 fill-current text-[#00B855]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path
                   d="M7 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1c2.15 0 4.2.4 6.1 1.09L12 16h-1.25L10 20H4l-.75-4H2L.9 10.09A17.93 17.93 0 0 1 7 9zm8.31.17c1.32.18 2.59.48 3.8.92L18 16h-1.25L16 20h-3.96l.37-2h1.25l1.65-8.83zM13 0a4 4 0 1 1-1.33 7.76 5.96 5.96 0 0 0 0-7.52C12.1.1 12.53 0 13 0z" />
               </svg>
@@ -64,13 +67,13 @@ const Profile = () => {
             </button>
           </li>
           <li onClick={handleShowModal} className="flex flex-col items-center justify-around">
-            <button className="tracking-wide flex-col rounded-lg flex items-center justify-center focus:shadow-outline focus:outline-none">
-              <img className='w-5 mr-2' src={editIcon} alt="" />
+            <button className="text-sm tracking-wide flex-col rounded-lg flex items-center justify-center focus:shadow-outline focus:outline-none">
+              <img className='md:w-5 w-4 mr-2' src={editIcon} alt="" />
               <span>Edit profile</span>
             </button>
           </li>
         </ul>
-        <div className="pl-10 pr-[25rem] py-5 mt-2 mb-7">
+        <div className="md:px-10 px-6 py-5 mt-2 mb-7">
           <h2 className="font-semibold text-xl">About me</h2>
           <p className="text-gray-500 mt-1 text-left">{user.aboutme}</p>
         </div>
