@@ -40,3 +40,22 @@ export const readPost = async (req, res) => {
         res.status(400).json({ message: "Failed to load posts!!" })
     }
 }
+
+// Logic for reading all posts of logged in user
+export const deletePost = async (req, res) => {
+    try {
+        //    Find post to be deleted and delete it 
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            res.status(404).json({ message: "Failed to find post!!" });
+        }
+        if (post.author.toString() != req.user._id) {
+            res.status(401).json({ message: "Unauthorized!!" });
+        } else {
+            const deletePost = await Post.findByIdAndDelete(req.params.id);
+            res.status(200).json({ message: "Post deleted successfully!!" });
+        }
+    } catch (error) {
+        res.status(400).json({ message: "Failed to delete post!!" });
+    }
+}
