@@ -21,7 +21,7 @@ const Navbar = () => {
                     </svg>
                     <span className="ml-2 text-gray-800 text-sm font-bold">Zylonet</span>
                 </div>
-                <div onClick={handleToggleNav} className="sm:hidden rounded-full closeNav text-black w-7 h-7 flex justify-center items-center opacity-80"><img className='w-4' src={closeIcon} alt="" /></div>
+                <div onClick={handleToggleNav} className="sm:hidden rounded-full closeNav text-black w-7 h-7 flex justify-center items-center opacity-45"><img className='w-3' src={closeIcon} alt="" /></div>
             </Link>
             <div className="w-full px-2">
                 <div className="flex flex-col items-center w-full mt-3 border-t border-gray-300">

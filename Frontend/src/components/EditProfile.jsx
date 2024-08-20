@@ -75,9 +75,9 @@ const EditProfile = ({ setShowModal }) => {
     return (
         <div>
             <div id="crud-modal" tabIndex="-1" className={`overflow-y-auto backdrop-brightness-50 flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full`}>
-                <div className="relative p-4 w-full max-w-[40rem] max-h-full">
-                    <div className="relative bg-white rounded-lg shadow">
-                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                <div className="relative md:p-4 w-full max-w-[40rem] max-h-full">
+                    <div className="relative bg-white md:rounded-lg shadow">
+                        <div className="flex mt-28 md:mt-0 items-center justify-between p-4 md:p-5 border-b rounded-t">
                             <h3 className="text-lg font-semibold text-gray-900">
                                 Edit your profile
                             </h3>
@@ -92,7 +92,7 @@ const EditProfile = ({ setShowModal }) => {
                             <div className="grid gap-4 mb-4 grid-cols-2">
                                 <div className="col-span-2">
                                     <div className="profile mb-4 flex gap-3 flex-col justify-center items-center">
-                                        <div className='flex justify-center items-center gap-6'>
+                                        <div className='flex flex-col-reverse md:flex-row justify-center items-center gap-6'>
                                             <label title='Upload profile' htmlFor="uploadFile1">
                                                 <div className='cursor-pointer'>
                                                     <div className="mx-auto max-w-xs">
