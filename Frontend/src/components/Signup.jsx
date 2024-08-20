@@ -3,6 +3,8 @@ import dog from "../assets/dog.png"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../storage/Auth.jsx"
 import { toast } from 'react-toastify';
+import HamMenu from "./HamMenu.jsx"
+import NavShadow from "./NavShadow.jsx"
 
 const Signup = () => {
 
@@ -58,6 +60,8 @@ const Signup = () => {
 
     return (
         <div>
+            <NavShadow />
+            <HamMenu />
             <div className="min-h-screen bg-gray-50 text-gray-900 flex justify-center">
                 <div className="max-w-screen-xl m-0 sm:ml-[18rem] sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                     <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex-col gap-6 flex justify-center items-center">

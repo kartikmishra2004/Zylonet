@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import loginIcon from "../assets/loginIcon.png"
 import { useAuth } from "../storage/Auth.jsx"
 import { toast } from 'react-toastify';
+import HamMenu from "./HamMenu.jsx"
+import NavShadow from "./NavShadow.jsx"
 
 const Login = () => {
 
@@ -54,9 +56,11 @@ const Login = () => {
 
     return (
         <div>
+            <NavShadow />
+            <HamMenu />
             <div className="min-h-screen bg-gray-50 text-gray-900 flex justify-center">
                 <div className="max-w-screen-xl m-0 sm:ml-[18rem] sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
-                    <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex-col gap-6 flex justify-center items-center">
+                    <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex-col gap-6 flex md:justify-center items-center">
                         <div>
                             <a className="flex items-center text-[#00B855] w-full px-3 mt-3" href="#">
                                 <svg className="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

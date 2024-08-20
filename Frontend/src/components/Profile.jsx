@@ -6,6 +6,7 @@ import PostCard from "./PostCard";
 import { Link } from "react-router-dom";
 import heart from "../assets/heart.png";
 import HamMenu from "./HamMenu";
+import NavShadow from "./NavShadow";
 
 const Profile = () => {
 
@@ -36,6 +37,7 @@ const Profile = () => {
 
   return (
     <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
+      <NavShadow />
       <div
         className="md:max-w-2xl xl:max-w-[70rem] mx-auto bg-white shadow-xl rounded-lg text-gray-900">
         <div className="rounded-t-lg h-32">

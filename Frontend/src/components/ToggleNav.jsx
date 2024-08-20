@@ -7,6 +7,7 @@ export const ToggleNavContext = createContext();
 export const ToggleNavProvider = ({ children }) => {
 
     const [nav, setNav] = useState("-left-full");
+    const [navShadow, setNavShadow] = useState("hidden");
 
 
     const handleToggleNav = (e) => {
@@ -16,9 +17,14 @@ export const ToggleNavProvider = ({ children }) => {
         } else {
             setNav("-left-full");
         }
+        if (navShadow === "hidden") {
+            setNavShadow("block");
+        } else {
+            setNavShadow("hidden");
+        }
     }
 
-    return <ToggleNavContext.Provider value={{ nav, handleToggleNav }}>
+    return <ToggleNavContext.Provider value={{ nav, handleToggleNav, navShadow }}>
         {children}
     </ToggleNavContext.Provider>
 

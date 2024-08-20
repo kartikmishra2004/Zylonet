@@ -12,7 +12,7 @@ const Navbar = () => {
     const { nav, handleToggleNav } = useToggleNav();
 
     return (
-        <div className={`z-50 flex ${nav} md:left-0 transition-all jus duration-500 ease-in-out fixed flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-gray-100 rounded`}>
+        <div className={`z-50 flex ${nav} md:left-0 transition-all jus duration-500 ease-in-out fixed flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-gray-100`}>
             <Link className="flex text-[#00B855] justify-between items-center w-full px-3 mt-3" to="/">
                 <div className='flex justify-center items-center'>
                     <svg className="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -41,7 +41,7 @@ const Navbar = () => {
                         </svg>
                         <span className="ml-2 text-sm font-medium">Search</span>
                     </Link>
-                    <Link className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" to="createpost">
+                    <Link className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" to="/createpost">
                         <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
