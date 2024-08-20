@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import timeAgo from "../utils/TimeFormatter";
+import bin from "../assets/bin.png"
 
 const PostCard = ({ title, caption, image, createdAt }) => {
 
@@ -10,12 +11,15 @@ const PostCard = ({ title, caption, image, createdAt }) => {
     }
 
     return (
-        <div className='cursor-pointer'>
+        <div>
             <div className="flex flex-col justify-center items-center mb-6">
                 <div className="bg-white rounded shadow-md overflow-hidden max-w-lg w-[18rem] md:w-[100%]">
                     <img src={image} alt="Mountain" className="w-full h-max object-contain bg-[#ebebeb]" />
                     <div className="p-6">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
+                        <div className='flex w-full justify-between items-center'>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
+                            <span title='Delete post' className='cursor-pointer'><img className='w-8' src={bin} alt="" /></span>
+                        </div>
                         <p className="text-gray-700 leading-tight mb-4">
                             {caption}
                         </p>
