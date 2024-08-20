@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../storage/Auth';
 import { toast } from 'react-toastify';
-import loading from "../assets/loading.gif"
+import loading from "../assets/loading.gif";
+import HamMenu from "./HamMenu"
+import NavShadow from "./NavShadow"
 
 const CreatePost = () => {
 
@@ -79,7 +81,9 @@ const CreatePost = () => {
   }
 
   return (
-    <div className='ml-[18rem]'>
+    <div className='md:ml-[18rem]'>
+      <NavShadow />
+      <HamMenu />
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold text-[black] mb-6">Create Post</h1>
         <form onSubmit={handleSubmitPost} className="grid grid-cols-1 gap-6">
