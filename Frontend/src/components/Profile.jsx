@@ -13,8 +13,7 @@ const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
-  const { user } = useAuth();
-  const { token } = useAuth();
+  const { user, token } = useAuth();
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -33,7 +32,7 @@ const Profile = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>

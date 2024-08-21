@@ -80,9 +80,22 @@ export const AuthProvider = ({ children }) => {
     }
 
     // Calling API for deleting user's post
-    
+    const handleDeletePost = async (id) => {
+        const response = await fetch(`http://localhost:8080/api/v1/post/deletepost/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        const res_data = await response.json();
+        if (response.ok) {
+            toast.success("Post deleted successfully!!");
+        } else {
+            toast.error("Failed to delete post!!")
+        }
+    }
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile }}>
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost }}>
         {children}
     </AuthContext.Provider>
 
