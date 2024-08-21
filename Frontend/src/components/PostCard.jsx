@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 import timeAgo from "../utils/TimeFormatter";
 import bin from "../assets/bin.png"
+import DeletePost from './DeletePost';
 
-const PostCard = ({ title, caption, image, createdAt }) => {
+const PostCard = ({ title, caption, image, createdAt, id }) => {
 
     const [timeStamp, setTimeStamp] = useState(timeAgo(createdAt));
 
     if (timeStamp === "less than a minute ago") {
         setTimeStamp("just now");
+    }
+
+    const [deleteModal, setDeleteModal] = useState(false);
+
+    const handleDeleteConfirm = () => {
+        setDeleteModal(true);
     }
 
     return (
@@ -18,7 +25,7 @@ const PostCard = ({ title, caption, image, createdAt }) => {
                     <div className="p-6">
                         <div className='flex w-full justify-between items-center'>
                             <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
-                            <span title='Delete post' className='cursor-pointer'><img className='w-8' src={bin} alt="" /></span>
+                            <span onClick={handleDeleteConfirm} title='Delete post' className='cursor-pointer'><img className='w-8' src={bin} alt="" /></span>
                         </div>
                         <p className="text-gray-700 leading-tight mb-4">
                             {caption}
@@ -34,6 +41,7 @@ const PostCard = ({ title, caption, image, createdAt }) => {
                     </div>
                 </div>
             </div>
+            {deleteModal && <DeletePost setDeleteModal={setDeleteModal} id={id} />}
         </div>
     )
 }

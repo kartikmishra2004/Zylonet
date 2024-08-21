@@ -79,6 +79,9 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    // Calling API for deleting user's post
+    
+
     return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile }}>
         {children}
     </AuthContext.Provider>
