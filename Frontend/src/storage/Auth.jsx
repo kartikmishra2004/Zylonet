@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
             userAuthentication();
         }
-    }, [token]);
+    }, [token, user]);
 
 
     // Calling api for updating user

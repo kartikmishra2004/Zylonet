@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom"
-import logoutIcon from "../assets/power-off.png"
-import { useAuth } from "../storage/Auth"
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import logoutIcon from "../assets/power-off.png";
+import { useAuth } from "../storage/Auth";
 import { useToggleNav } from './ToggleNav';
-import closeIcon from "../assets/close.png"
+import closeIcon from "../assets/close.png";
 
 const Navbar = () => {
 

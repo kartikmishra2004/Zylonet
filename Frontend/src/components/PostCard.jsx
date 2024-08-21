@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import timeAgo from "../utils/TimeFormatter";
-import bin from "../assets/bin.png"
+import bin from "../assets/bin.png";
 import DeletePost from './DeletePost';
 
 const PostCard = ({ title, caption, image, createdAt, id }) => {
@@ -15,6 +15,7 @@ const PostCard = ({ title, caption, image, createdAt, id }) => {
 
     const handleDeleteConfirm = () => {
         setDeleteModal(true);
+        document.body.style.overflow = 'hidden';
     }
 
     return (

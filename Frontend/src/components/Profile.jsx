@@ -17,6 +17,7 @@ const Profile = () => {
 
   const handleShowModal = () => {
     setShowModal(true);
+    document.body.style.overflow = 'hidden';
   }
 
   const fetchPosts = async () => {
