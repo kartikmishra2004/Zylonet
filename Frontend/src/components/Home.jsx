@@ -82,8 +82,11 @@ const Home = () => {
 
       <div className="p-4 flex flex-col justify-evenly items-center md:mx-8">
         <div className="columns-1 md:columns-2 xl:columns-4 gap-7 ">
-          {ranPosts.map((item) => (<div className="break-inside-avoid mb-8">
-            <img className="h-auto max-w-full rounded-xl" src={item.image} alt="Gallery image" />
+          {ranPosts.map((item) => (<div key={item._id} className="break-inside-avoid mb-8 relative">
+            <div className='flex justify-center items-center absolute cursor-pointer w-full h-full hover:bg-[#d5d5d5a9]'>
+              
+            </div>
+            <img className="h-auto max-w-full" src={item.image} alt="Gallery image" />
           </div>))}
         </div>
       </div>
