@@ -4,6 +4,7 @@ import connectDb from "./database/dbconnection.js";
 import authRoute from "./routes/auth.route.js";
 import profileRoute from "./routes/profile.route.js";
 import postRoute from "./routes/post.route.js";
+import RandomPostsRoute from "./routes/randomposts.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
 
@@ -25,6 +26,9 @@ app.use("/api/v1/profile", profileRoute);
 
 // API for post
 app.use("/api/v1/post", postRoute);
+
+// API for random posts
+app.use("/api/v1/randomposts", RandomPostsRoute);
 
 app.use(errorMiddleware);
 
