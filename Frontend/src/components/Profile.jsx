@@ -78,7 +78,7 @@ const Profile = () => {
           <pre className="text-gray-500 whitespace-pre-wrap mt-1 text-left font-sans">{user.aboutme}</pre>
         </div>
         <div className="p-4 flex flex-col-reverse justify-evenly items-center border-t mx-8 mt-2">
-          {posts.length > 0 ? posts.map(item => (<PostCard key={item._id} title={item.title} caption={item.caption} image={item.image} createdAt={item.createdAt} id={item._id} />)) : (<div className='py-12 flex gap-6 w-full items-center'><p className='text-gray-500'>No posts yet. Start sharing your thoughts!</p><Link to='/createpost' className='tracking-wide font-semibold bg-[#00B855] text-gray-100 w-max px-5 py-2.5 rounded-lg hover:bg-[#22a45e] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'>Create Post</Link></div>)}
+          {posts.length > 0 ? posts.map(item => (<PostCard key={item._id} title={item.title} caption={item.caption} image={item.image} createdAt={item.createdAt} id={item._id} />)) : (<div className='py-12 flex md:flex-row flex-col gap-6 w-full items-center'><p className='text-gray-500'>No posts yet. Start sharing your thoughts!</p><Link to='/createpost' className='tracking-wide font-semibold bg-[#00B855] text-gray-100 w-max px-5 py-2.5 rounded-lg hover:bg-[#22a45e] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'>Create Post</Link></div>)}
         </div>
       </div>
       {showModal && <EditProfile setShowModal={setShowModal} user={user} />}
