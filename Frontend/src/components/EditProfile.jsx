@@ -78,7 +78,7 @@ const EditProfile = ({ setShowModal }) => {
             <div id="crud-modal" tabIndex="-1" className={`overflow-y-auto backdrop-brightness-50 flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full`}>
                 <div className="relative md:p-4 w-full max-w-[40rem] max-h-full">
                     <div className="relative bg-white md:rounded-lg shadow">
-                        <div className="flex mt-28 md:mt-0 items-center justify-between p-4 md:p-5 border-b rounded-t">
+                        <div className="flex mt-[5.8rem] md:mt-0 items-center justify-between p-4 md:p-5 border-b rounded-t">
                             <h3 className="text-lg font-semibold text-gray-900">
                                 Edit your profile
                             </h3>

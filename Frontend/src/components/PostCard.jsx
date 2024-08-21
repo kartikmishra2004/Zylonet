@@ -26,7 +26,7 @@ const PostCard = ({ title, caption, image, createdAt, id }) => {
                     <div className="p-6">
                         <div className='flex w-full justify-between items-center'>
                             <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
-                            <span onClick={handleDeleteConfirm} title='Delete post' className='cursor-pointer'><img className='w-8' src={bin} alt="" /></span>
+                            <span onClick={handleDeleteConfirm} title='Delete post' className='cursor-pointer'><img className='md:w-8 w-6' src={bin} alt="" /></span>
                         </div>
                         <p className="text-gray-700 leading-tight mb-4">
                             {caption}
