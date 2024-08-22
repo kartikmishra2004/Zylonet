@@ -10,7 +10,7 @@ const randomposts = async (req, res) => {
             }
             return array;
         }
-        const randomPosts = await Post.find();
+        const randomPosts = await Post.find().populate('author');
         const shuffledData = shuffleArray(randomPosts);
         res.status(200).json(shuffledData);
     } catch (error) {
