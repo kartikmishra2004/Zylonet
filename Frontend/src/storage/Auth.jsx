@@ -95,7 +95,25 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost }}>
+    const [ranPosts, setRanPosts] = useState([]);
+    // Calling API for fetching random posts
+    const randomPosts = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/randomposts/", {
+                method: "GET",
+            });
+            const res_data = await response.json();
+            setRanPosts(res_data);
+        } catch (error) {
+            console.log("Failed to get posts!!")
+        }
+    }
+    useEffect(() => {
+        randomPosts()
+    }, []);
+
+
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts }}>
         {children}
     </AuthContext.Provider>
 

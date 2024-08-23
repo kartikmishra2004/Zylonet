@@ -25,6 +25,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Enter something about yourself",
     },
+    likes: {
+        type: Number,
+        default: 0,
+    },
+    followers: {
+        type: Number,
+        default: 0,
+    },
 }, { timestamps: true });
 
 // Securing password using bcrypt

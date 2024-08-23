@@ -7,28 +7,7 @@ import timeAgo from '../utils/TimeFormatter';
 
 const Home = () => {
 
-  const { isLoggedIn } = useAuth();
-
-  const [ranPosts, setRanPosts] = useState([]);
-
-
-  // Calling API for fetching random posts
-  const randomPosts = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/v1/randomposts/", {
-        method: "GET",
-      });
-      const res_data = await response.json();
-      setRanPosts(res_data);
-    } catch (error) {
-      console.log("Failed to get posts!!")
-    }
-  }
-
-
-  useEffect(() => {
-    randomPosts()
-  }, []);
+  const { isLoggedIn, ranPosts } = useAuth();
 
   return (
     <div className='md:ml-[18rem]'>
@@ -89,7 +68,7 @@ const Home = () => {
               <img src={item.image} className="w-full mb-3 rounded-t-lg cursor-pointer" />
               <div className="p-4 pt-2">
                 <div>
-                  <a href="#" className="text-gray-700 font-bold text-lg mb-2 hover:text-[#00B855] inline-block">{item.title}</a>
+                  <Link to="#" className="text-gray-700 font-bold text-lg mb-2 hover:text-[#00B855] inline-block">{item.title}</Link>
                   <p className="text-gray-700 text-sm">{item.caption}</p>
                 </div>
                 <div className="flex items-center w-full text-xs justify-between text-gray-500 py-5 mb-8">
@@ -113,13 +92,15 @@ const Home = () => {
                   </button>
                 </div>
                 <div className="flex items-center">
-                  <a
-                    href="#"><img className="w-10 h-10 rounded-full mr-4 object-cover" src={item.author.profile} alt="Avatar of Jonathan Reinink" /></a>
+                  <Link
+                    to={`/viewprofile/${item.author.id}`}
+                    state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, likes: item.author.likes, followers: item.author.followers }}><img className="w-10 h-10 rounded-full mr-4 object-cover" src={item.author.profile} alt="Avatar of Jonathan Reinink" /></Link>
                   <div className="text-sm">
-                    <a href="#" className="text-gray-700 font-semibold leading-none hover:text-[#00B855]">{item.author.username}</a>
+                    <Link
+                      to={`/viewprofile/${item.author.id}`}
+                      state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, likes: item.author.likes, followers: item.author.followers }} className="text-gray-700 font-semibold leading-none hover:text-[#00B855]">{item.author.username}</Link>
                     <p className="text-gray-600">{timeAgo(item.createdAt)}</p>
                   </div>
-
                 </div>
               </div>
             </div>
