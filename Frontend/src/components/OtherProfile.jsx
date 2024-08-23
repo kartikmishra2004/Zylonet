@@ -3,7 +3,8 @@ import NavShadow from './NavShadow';
 import HamMenu from './HamMenu';
 import heart from "../assets/heart.png";
 import { useParams, useLocation } from 'react-router-dom';
-import timeAgo from "../utils/TimeFormatter"
+import timeAgo from "../utils/TimeFormatter";
+import addFriend from "../assets/add-friend.png"
 
 const OtherProfile = () => {
 
@@ -59,6 +60,12 @@ const OtherProfile = () => {
                             <span>Followers: {followers}</span>
                         </button>
                     </li>
+                    <li className="flex flex-col items-center justify-between">
+                        <button className='text-sm flex flex-col items-center justify-around'>
+                            <img className='md:w-5 w-4' src={addFriend} alt="" />
+                            <span>Add friend</span>
+                        </button>
+                    </li>
                 </ul>
                 <div className="md:px-10 w-full px-6 py-5 mt-2">
                     <div className="flex justify-center items-center w-full">
@@ -97,6 +104,11 @@ const OtherProfile = () => {
                                         </svg>
                                         <span>{item.comments ? item.comments.length : 0} Comment</span>
                                     </button>
+                                </div>
+                                <div className="flex items-center">
+                                    <div className="text-sm">
+                                        <p className="text-gray-600">{timeAgo(item.createdAt)}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>)) : (<div>No posts!!</div>)}

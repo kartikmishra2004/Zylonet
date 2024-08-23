@@ -34,7 +34,7 @@ const App = () => {
         <Route exact path='/message' element={isLoggedIn ? <Message /> : <Login />} />
         <Route exact path='/logout' element={isLoggedIn ? <Logout /> : <Login />} />
         <Route exact path='/profile' element={isLoggedIn ? <Profile /> : <Login />} />
-        <Route exact path='/viewprofile/:id' element={isLoggedIn ? <OtherProfile /> : <Login />} />
+        <Route exact path='/viewprofile/:id' element={<OtherProfile />} />
       </Routes>
     </BrowserRouter>
   )
