@@ -41,6 +41,17 @@ export const readPost = async (req, res) => {
     }
 }
 
+// Logic for reading all posts of specific user
+export const readPostById = async (req, res) => {
+    try {
+        const author = req.params.id;
+        const findPosts = await Post.find({ author: author });
+        res.status(200).json(findPosts);
+    } catch (error) {
+        res.status(400).json({ message: "Failed to load posts!!" })
+    }
+}
+
 // Logic for reading all posts of logged in user
 export const deletePost = async (req, res) => {
     try {

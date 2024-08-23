@@ -93,11 +93,11 @@ const Home = () => {
                 </div>
                 <div className="flex items-center">
                   <Link
-                    to={`/viewprofile/${item.author.id}`}
+                    to={`/viewprofile/${item.author._id}`}
                     state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, likes: item.author.likes, followers: item.author.followers }}><img className="w-10 h-10 rounded-full mr-4 object-cover" src={item.author.profile} alt="Avatar of Jonathan Reinink" /></Link>
                   <div className="text-sm">
                     <Link
-                      to={`/viewprofile/${item.author.id}`}
+                      to={`/viewprofile/${item.author._id}`}
                       state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, likes: item.author.likes, followers: item.author.followers }} className="text-gray-700 font-semibold leading-none hover:text-[#00B855]">{item.author.username}</Link>
                     <p className="text-gray-600">{timeAgo(item.createdAt)}</p>
                   </div>

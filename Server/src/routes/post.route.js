@@ -3,7 +3,7 @@ import multer from "multer";
 import { v4 as uuidv4 } from 'uuid';
 import cloudinary from "cloudinary";
 import authMiddleware from "../middlewares/auth.middleware.js";
-import { createPost, readPost, deletePost } from "../controllers/post.controller.js"
+import { createPost, readPost, deletePost, readPostById } from "../controllers/post.controller.js"
 
 const router = express.Router();
 
@@ -32,6 +32,9 @@ router.route("/createpost").post(upload.single('post'), authMiddleware, createPo
 
 // Route for read all posts of logged in user
 router.route("/readpost").get(authMiddleware, readPost);
+
+// Route for read all posts of a specific user
+router.route("/readpost/:id").get(readPostById); 
 
 // Route for delete post
 router.route("/deletepost/:id").delete(authMiddleware, deletePost);
