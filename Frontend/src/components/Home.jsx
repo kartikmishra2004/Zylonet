@@ -10,7 +10,7 @@ const Home = () => {
   const { isLoggedIn, ranPosts } = useAuth();
 
   return (
-    <div className='md:ml-[18rem]'>
+    <div className='md:ml-[15rem]'>
       <NavShadow />
       <HamMenu />
       <div className="flex h-[50vh] justify-center items-center">
@@ -39,7 +39,7 @@ const Home = () => {
             <p className="md:mx-auto mt-3 max-w-xl md:text-lg text-base text-gray-500">
               Zylonet brings you closer to what matters. Connect with friends, share your moments, and explore new ideas, all while getting instant assistance from our AI SupportBot – here to help you 24/7.
             </p>
-            <div className={`mt-5 sm:mt-8 ${isLoggedIn ? "hidden" : "flex"} sm:justify-center`}>
+            <div className={`mt-5 sm:mt-8 ${isLoggedIn ? "hidden" : "flex"} justify-center`}>
               <div className="rounded-md shadow"><Link
                 className="flex w-full items-center justify-center rounded-lg border border-transparent bg-[#00B855] px-8 py-3 text-base font-medium text-white hover:bg-[#22a45e] md:py-4 md:px-10 md:text-lg"
                 to="/signup">Get started
@@ -50,7 +50,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="relative my-12 w-full md:max-w-4xl max-w-[18rem] mx-auto bg-white rounded-full">
+      <div className="relative my-8 w-full md:max-w-4xl max-w-[18rem] mx-auto bg-white rounded-full">
         <input placeholder="e.g. Blog" className="rounded-full w-full h-16 bg-transparent py-2 pl-8 pr-32 outline-none border-2 border-gray-100 shadow-md hover:outline-none focus:ring-[#00B855] focus:border-[#00B855]" type="text" name="query" id="query" />
         <button type="submit" className="absolute inline-flex items-center h-10 px-4 py-2 text-sm text-white transition duration-150 ease-in-out rounded-full outline-none right-3 top-3 bg-[#00B855] sm:px-6 sm:text-base sm:font-medium hover:bg-[#22a45e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B855]">
           <svg className="-ml-0.5 sm:-ml-1 mr-2 w-4 h-4 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -75,7 +75,7 @@ const OtherProfile = () => {
                         </div>
                     </div>
                     <div className="line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 border-gray-200"></div>
-                    <div className="p-4 columns-1 md:columns-2 xl:columns-3 gap-7">
+                    <div className="columns-1 md:columns-2 xl:columns-3 gap-7">
                         {posts.length > 0 ? posts.map((item) => (<div
                             key={item._id}
                             className="border-r rounded-lg border-b border-l border-zinc-300 lg:border-t bg-white break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal">
