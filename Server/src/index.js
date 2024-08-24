@@ -5,6 +5,8 @@ import authRoute from "./routes/auth.route.js";
 import profileRoute from "./routes/profile.route.js";
 import postRoute from "./routes/post.route.js";
 import RandomPostsRoute from "./routes/randomposts.route.js";
+import unfollow from "./routes/unfollow.route.js";
+import follow from "./routes/follow.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
 
@@ -29,6 +31,12 @@ app.use("/api/v1/post", postRoute);
 
 // API for random posts
 app.use("/api/v1/randomposts", RandomPostsRoute);
+
+// API for follow
+app.use("/api/v1/follow", follow);
+
+// API for unfollow
+app.use("/api/v1/unfollow", unfollow);
 
 app.use(errorMiddleware);
 

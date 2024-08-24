@@ -25,15 +25,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Enter something about yourself",
     },
-    likes: {
-        type: Number,
-        default: 0,
-    },
-    followers: {
-        type: Number,
-        default: 0,
-    },
-}, { timestamps: true });
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', }],
+},
+    { timestamps: true });
 
 // Securing password using bcrypt
 userSchema.pre('save', async function (next) {

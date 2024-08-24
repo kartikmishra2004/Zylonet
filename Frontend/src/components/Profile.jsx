@@ -10,10 +10,12 @@ import NavShadow from "./NavShadow";
 
 const Profile = () => {
 
+  const { user, token } = useAuth();
+
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
-
-  const { user, token } = useAuth();
+  const [followersCount, setFollowersCount] = useState([])
+  const [followingCount, setFollowingCount] = useState([])
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -35,6 +37,11 @@ const Profile = () => {
     fetchPosts();
   }, [posts]);
 
+  useEffect(() => {
+    setFollowersCount(user.followers ? user.followers.length : 0);
+    setFollowingCount(user.following ? user.following.length : 0);
+  }, [user])
+
   return (
     <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
       <NavShadow />
@@ -54,7 +61,7 @@ const Profile = () => {
           <li className="flex flex-col items-center justify-around">
             <button className='text-sm flex flex-col items-center justify-around'>
               <img className='md:w-5 w-4' src={heart} alt="" />
-              <div>Hearts: 1k</div>
+              <div>Following: {followingCount}</div>
             </button>
           </li>
           <li className="flex flex-col items-center justify-between">
@@ -63,7 +70,7 @@ const Profile = () => {
                 <path
                   d="M7 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1c2.15 0 4.2.4 6.1 1.09L12 16h-1.25L10 20H4l-.75-4H2L.9 10.09A17.93 17.93 0 0 1 7 9zm8.31.17c1.32.18 2.59.48 3.8.92L18 16h-1.25L16 20h-3.96l.37-2h1.25l1.65-8.83zM13 0a4 4 0 1 1-1.33 7.76 5.96 5.96 0 0 0 0-7.52C12.1.1 12.53 0 13 0z" />
               </svg>
-              <span>Followers: 877</span>
+              <span>Followers: {followersCount}</span>
             </button>
           </li>
           <li onClick={handleShowModal} className="flex flex-col items-center justify-around">
@@ -76,8 +83,8 @@ const Profile = () => {
         <div className="md:px-[4.1rem] w-full px-6 py-5 mt-2">
           <div className="flex justify-center items-center w-full">
             <div className="flex flex-col justify-center items-center md:w-[50vw] w-[90vw]">
-            <h2 className="font-semibold text-xl w-full">About me</h2>
-            <pre className="text-gray-500 whitespace-pre-wrap mt-1 text-left font-sans">{user.aboutme}</pre>
+              <h2 className="font-semibold text-xl w-full">About me</h2>
+              <pre className="text-gray-500 whitespace-pre-wrap mt-1 text-left font-sans">{user.aboutme}</pre>
             </div>
           </div>
           <div className="line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 border-gray-200"></div>
