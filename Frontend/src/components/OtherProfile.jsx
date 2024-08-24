@@ -54,7 +54,7 @@ const OtherProfile = () => {
                 <ul className="py-4 mt-5 text-gray-700 flex items-center justify-evenly">
                     <li className="flex flex-col items-center justify-around">
                         <button className='text-sm flex flex-col items-center justify-around'>
-                            <img className='md:w-5 w-4' src={heart} alt="" />
+                            <img className='md:w-6 w-5' src={heart} alt="" />
                             <div>Following: {followingCount}</div>
                         </button>
                     </li>
