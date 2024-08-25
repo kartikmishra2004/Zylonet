@@ -5,17 +5,19 @@ import heart from "../assets/heart.png";
 import { useParams, useLocation } from 'react-router-dom';
 import timeAgo from "../utils/TimeFormatter";
 import addFriend from "../assets/add-friend.png";
+import unfollow from "../assets/unfollow.png";
 import { useAuth } from '../storage/Auth';
 
 const OtherProfile = () => {
 
-    const { handleFollow } = useAuth();
+    const { handleFollow, handleUnfollow, user, ranPosts } = useAuth();
     const location = useLocation();
     const { id } = useParams();
     const { fullName, username, profile, aboutme, following, followers } = location.state;
     const [posts, setPosts] = useState([]);
     const [followersCount, setFollowersCount] = useState([]);
     const [followingCount, setFollowingCount] = useState([]);
+    const [isFollowed, setIsFollowed] = useState(false);
 
     // Calling API for fetching posts of clicked user
     const fetchPosts = async () => {
@@ -35,12 +37,26 @@ const OtherProfile = () => {
     }, [id]);
 
     useEffect(() => {
+        if (followers.some(id => id === user._id)) {
+            setIsFollowed(true);
+        } else {
+            setIsFollowed(false);
+        }
+    }, []);
+
+    useEffect(() => {
         setFollowersCount(followers ? followers.length : 0);
         setFollowingCount(following ? following.length : 0);
-    }, [id])
+    }, [])
 
-    const handleFollowUser = () => {
-        handleFollow({ id, setFollowersCount, setFollowingCount });
+    const handleFollowUser = async () => {
+        await handleFollow({ id, setFollowersCount, setFollowingCount });
+        setIsFollowed(true);
+    }
+
+    const handleUnfollowUser = async () => {
+        await handleUnfollow({ id, setFollowersCount, setFollowingCount });
+        setIsFollowed(false);
     }
 
     return (
@@ -74,12 +90,17 @@ const OtherProfile = () => {
                             <span>Followers: {followersCount}</span>
                         </button>
                     </li>
-                    <li className="flex flex-col items-center justify-between">
+                    {!isFollowed ? (<li className="flex flex-col items-center justify-between">
                         <button onClick={handleFollowUser} className='text-sm flex flex-col items-center justify-around'>
                             <img className='md:w-5 w-4' src={addFriend} alt="" />
-                            <span>Add friend</span>
+                            <span>Follow</span>
                         </button>
-                    </li>
+                    </li>) : (<li className="flex flex-col items-center justify-between">
+                        <button onClick={handleUnfollowUser} className='text-sm flex flex-col items-center justify-around'>
+                            <img className='md:w-5 w-4' src={unfollow} alt="" />
+                            <span>Unfollow</span>
+                        </button>
+                    </li>)}
                 </ul>
                 <div className="md:px-10 w-full px-6 py-5 mt-2">
                     <div className="flex justify-center items-center w-full">

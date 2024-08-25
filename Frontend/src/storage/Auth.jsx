@@ -112,7 +112,6 @@ export const AuthProvider = ({ children }) => {
         randomPosts()
     }, []);
 
-
     // Calling API to follow
     const handleFollow = async ({ id, setFollowersCount, setFollowingCount }) => {
         try {
@@ -140,8 +139,33 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    // Calling API to unfollow
+    const handleUnfollow = async ({ id, setFollowersCount, setFollowingCount }) => {
+        try {
+            const body_data = {
+                userId: user._id,
+                targetUserId: id,
+            }
+            const response = await fetch("http://localhost:8080/api/v1/unfollow", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body_data),
+            });
+            const res_data = await response.json();
+            if (response.ok) {
+                setFollowersCount(res_data.updatedFollowers.length);
+                setFollowingCount(res_data.updatedFollowing.length);
+                toast.success("Unfollowed successfully!!");
+            }
+        } catch (error) {
+            toast.error("Failed to unfollow!!");
+        }
+    }
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow }}>
+
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow }}>
         {children}
     </AuthContext.Provider>
 
