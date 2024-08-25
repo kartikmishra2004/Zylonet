@@ -4,10 +4,12 @@ import HamMenu from './HamMenu';
 import heart from "../assets/heart.png";
 import { useParams, useLocation } from 'react-router-dom';
 import timeAgo from "../utils/TimeFormatter";
-import addFriend from "../assets/add-friend.png"
+import addFriend from "../assets/add-friend.png";
+import { useAuth } from '../storage/Auth';
 
 const OtherProfile = () => {
 
+    const { handleFollow } = useAuth();
     const location = useLocation();
     const { id } = useParams();
     const { fullName, username, profile, aboutme, following, followers } = location.state;
@@ -15,6 +17,7 @@ const OtherProfile = () => {
     const [followersCount, setFollowersCount] = useState([]);
     const [followingCount, setFollowingCount] = useState([]);
 
+    // Calling API for fetching posts of clicked user
     const fetchPosts = async () => {
         try {
             const response = await fetch(`http://localhost:8080/api/v1/post/readpost/${id}`, {
@@ -23,18 +26,22 @@ const OtherProfile = () => {
             const res_data = await response.json();
             setPosts(res_data);
         } catch (error) {
-            console.log("Failed to get notes!!")
+            console.log("Failed to get posts!!")
         }
     }
 
     useEffect(() => {
         fetchPosts()
-    }, [following, followers]);
+    }, [id]);
 
     useEffect(() => {
         setFollowersCount(followers ? followers.length : 0);
         setFollowingCount(following ? following.length : 0);
-      }, [])
+    }, [id])
+
+    const handleFollowUser = () => {
+        handleFollow({ id, setFollowersCount, setFollowingCount });
+    }
 
     return (
         <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
@@ -68,7 +75,7 @@ const OtherProfile = () => {
                         </button>
                     </li>
                     <li className="flex flex-col items-center justify-between">
-                        <button className='text-sm flex flex-col items-center justify-around'>
+                        <button onClick={handleFollowUser} className='text-sm flex flex-col items-center justify-around'>
                             <img className='md:w-5 w-4' src={addFriend} alt="" />
                             <span>Add friend</span>
                         </button>

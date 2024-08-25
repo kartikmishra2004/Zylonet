@@ -17,7 +17,7 @@ export const follow = async (req, res) => {
         } else {
             res.status(400).json({ message: "Already followed!!" });
         }
-        res.status(200).json({ message: "Followed successfully!!" });
+        res.status(200).json({ message: "Followed successfully!!", updatedFollowers: targetUser.followers, updatedFollowing: targetUser.following });
     } catch (error) {
         res.status(400).json({ message: "Failed to follow!!" });
     }
@@ -35,7 +35,7 @@ export const unfollow = async (req, res) => {
         targetUser.followers = targetUser.followers.filter(id => !id.equals(userId));
         await user.save();
         await targetUser.save();
-        res.status(200).json({ message: "Unfollowed successfully!!" });
+        res.status(200).json({ message: "Unfollowed successfully!!", updatedFollowers: targetUser.followers, updatedFollowing: targetUser.following });
     } catch (error) {
         res.status(400).json({ message: "Failed to unfollow!!" })
     }
