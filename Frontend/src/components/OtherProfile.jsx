@@ -7,10 +7,11 @@ import timeAgo from "../utils/TimeFormatter";
 import addFriend from "../assets/add-friend.png";
 import unfollow from "../assets/unfollow.png";
 import { useAuth } from '../storage/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const OtherProfile = () => {
 
-    const { handleFollow, handleUnfollow, user, ranPosts } = useAuth();
+    const { handleFollow, handleUnfollow, user, isLoggedIn } = useAuth();
     const location = useLocation();
     const { id } = useParams();
     const { fullName, username, profile, aboutme, following, followers } = location.state;
@@ -18,6 +19,7 @@ const OtherProfile = () => {
     const [followersCount, setFollowersCount] = useState([]);
     const [followingCount, setFollowingCount] = useState([]);
     const [isFollowed, setIsFollowed] = useState(false);
+    const navigate = useNavigate();
 
     // Calling API for fetching posts of clicked user
     const fetchPosts = async () => {
@@ -50,8 +52,12 @@ const OtherProfile = () => {
     }, [])
 
     const handleFollowUser = async () => {
-        await handleFollow({ id, setFollowersCount, setFollowingCount });
-        setIsFollowed(true);
+        if (isLoggedIn) {
+            await handleFollow({ id, setFollowersCount, setFollowingCount });
+            setIsFollowed(true);
+        } else {
+            navigate('/login')
+        }
     }
 
     const handleUnfollowUser = async () => {
