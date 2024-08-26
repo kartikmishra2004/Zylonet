@@ -21,6 +21,14 @@ const OtherProfile = () => {
     const [isFollowed, setIsFollowed] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (followers.some(id => id === user._id)) {
+            setIsFollowed(true);
+        } else {
+            setIsFollowed(false);
+        }
+    }, []);
+
     // Calling API for fetching posts of clicked user
     const fetchPosts = async () => {
         try {
@@ -37,14 +45,6 @@ const OtherProfile = () => {
     useEffect(() => {
         fetchPosts()
     }, [id]);
-
-    useEffect(() => {
-        if (followers.some(id => id === user._id)) {
-            setIsFollowed(true);
-        } else {
-            setIsFollowed(false);
-        }
-    }, []);
 
     useEffect(() => {
         setFollowersCount(followers ? followers.length : 0);
