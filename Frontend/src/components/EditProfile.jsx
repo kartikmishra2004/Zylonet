@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../storage/Auth';
 
 const EditProfile = ({ setShowModal }) => {
-    const { user } = useAuth();
+    const { user, night } = useAuth();
     const { token } = useAuth();
     const { updateProfile } = useAuth();
 
@@ -77,9 +77,9 @@ const EditProfile = ({ setShowModal }) => {
         <div>
             <div id="crud-modal" tabIndex="-1" className={`overflow-y-auto backdrop-brightness-50 flex overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full`}>
                 <div className="relative md:p-4 w-full max-w-[40rem] max-h-full">
-                    <div className="relative bg-white md:rounded-lg shadow">
+                    <div className={`relative bg-white md:rounded-lg shadow ${!night ? "bg-[#2a2834] text-[#bababa]" : ""}`}>
                         <div className="flex mt-[5.8rem] md:mt-0 items-center justify-between p-4 md:p-5 border-b rounded-t">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className={`text-lg ${!night ? "text-[#bababa]" : ""} font-semibold text-gray-900`}>
                                 Edit your profile
                             </h3>
                             <button onClick={closeModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
@@ -97,7 +97,7 @@ const EditProfile = ({ setShowModal }) => {
                                             <label title='Upload profile' htmlFor="uploadFile1">
                                                 <div className='cursor-pointer'>
                                                     <div className="mx-auto max-w-xs">
-                                                        <label htmlFor="example1" className="mb-1 block text-sm font-medium text-gray-700">Upload profile</label>
+                                                        <label htmlFor="example1" className={`mb-1 block text-sm font-medium text-gray-700 ${!night ? "text-[#bababa]" : ""}`}>Upload profile</label>
                                                         <input accept=".jpg, .jpeg, .png, .gif" onChange={handleImageChange} id="example1" type="file" className="mt-2 block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-[#00B855] file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-[#22a45e] focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
                                                     </div>
                                                 </div>
@@ -111,11 +111,11 @@ const EditProfile = ({ setShowModal }) => {
                                     </div>
                                 </div>
                                 <div className="col-span-2">
-                                    <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                                    <input value={updatedUser.fullName} onChange={handleEditProfileChange} type="text" name="fullName" id="fullName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your name" />
+                                    <label htmlFor="fullName" className={`${!night ? "text-[#bababa]" : ""} block mb-2 text-sm font-medium text-gray-900`}>Name</label>
+                                    <input value={updatedUser.fullName} onChange={handleEditProfileChange} type="text" name="fullName" id="fullName" className={` ${!night ? "bg-[#3b3847]" : ""}bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5`} placeholder="Enter your name" />
                                 </div>
                                 <div className="col-span-2">
-                                    <label htmlFor="aboutme" className="block mb-2 text-sm font-medium text-gray-900">About me</label>
+                                    <label htmlFor="aboutme" className={`block mb-2 text-sm font-medium text-gray-900 ${!night ? "text-[#bababa]" : ""}`}>About me</label>
                                     <textarea maxLength='300' value={updatedUser.aboutme} onChange={handleEditProfileChange} rows='5' type="text" name="aboutme" id="aboutme" className="bg-gray-50 resize-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter something about yourself" />
                                 </div>
                             </div>
