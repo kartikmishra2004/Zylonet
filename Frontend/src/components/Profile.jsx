@@ -10,7 +10,7 @@ import NavShadow from "./NavShadow";
 
 const Profile = () => {
 
-  const { user, token } = useAuth();
+  const { user, token, night } = useAuth();
 
   const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -46,7 +46,7 @@ const Profile = () => {
     <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
       <NavShadow />
       <div
-        className="mx-auto w-full bg-white shadow-xl text-gray-900">
+        className={`mx-auto w-full ${!night ? "bg-[#2a2834]" : ""} bg-white shadow-xl text-gray-900`}>
         <div className="rounded-t-lg h-32">
           <HamMenu />
         </div>
@@ -54,10 +54,10 @@ const Profile = () => {
           <img className="object-cover object-center h-32" src={user.profile} />
         </div>
         <div className="text-center mt-2">
-          <h2 className="font-semibold">{user.fullName}</h2>
-          <p className="text-gray-500">{user.username}</p>
+          <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""}`}>{user.fullName}</h2>
+          <p className={`text-gray-500 ${!night ? "text-[#999999]" : ""}`}>{user.username}</p>
         </div>
-        <ul className="py-4 mt-5 text-gray-700 flex items-center justify-evenly">
+        <ul className={`py-4 mt-5 ${!night ? "text-[#bababa]" : ""} text-gray-700 flex items-center justify-evenly`}>
           <li className="flex flex-col items-center justify-around">
             <button className='text-sm flex flex-col items-center justify-around'>
               <img className='md:w-6 w-5' src={heart} alt="" />
@@ -83,11 +83,11 @@ const Profile = () => {
         <div className="md:px-[4.1rem] w-full px-6 py-5 mt-2">
           <div className="flex justify-center items-center w-full">
             <div className="flex flex-col justify-center items-center md:w-[50vw] w-[90vw]">
-              <h2 className="font-semibold text-xl w-full">About me</h2>
-              <pre className="text-gray-500 whitespace-pre-wrap mt-1 text-left font-sans">{user.aboutme}</pre>
+              <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""} text-xl w-full`}>About me</h2>
+              <pre className={`text-gray-500 ${!night ? "text-[#999999]" : ""} whitespace-pre-wrap mt-1 text-left font-sans`}>{user.aboutme}</pre>
             </div>
           </div>
-          <div className="line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 border-gray-200"></div>
+          <div className={`line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 ${!night ? "border-[#bababa]" : ""}border-gray-200`}></div>
           <div className="columns-1 md:columns-2 xl:columns-3 gap-7">
             {posts.length > 0 ? posts.map(item => (<PostCard key={item._id} title={item.title} caption={item.caption} image={item.image} createdAt={item.createdAt} id={item._id} profile={item.author.profile} following={item.following} comments={item.comments} />)) : (<div className='py-12 flex md:flex-row flex-col gap-6 w-full items-center'><p className='text-gray-500'>No posts yet. Start sharing your thoughts!</p><Link to='/createpost' className='tracking-wide font-semibold bg-[#00B855] text-gray-100 w-max px-5 py-2.5 rounded-lg hover:bg-[#22a45e] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'>Create Post</Link></div>)}
           </div>
