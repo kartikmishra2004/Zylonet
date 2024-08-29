@@ -17,7 +17,7 @@ const Home = () => {
         <div className="mx-auto w-full md:mt-10 flex justify-center px-4 lg:px-8">
           <div className="md:text-center w-full">
             <h1
-              className={`md:text-5xl text-[1.8rem] leading-8 md:leading-none font-extrabold tracking-tight ${!night ? "text-[white]" : "text-gray-700"}`}>
+              className={`md:text-5xl text-[1.8rem] leading-8 md:leading-none font-extrabold tracking-tight ${!night ? "text-[#bababa]" : "text-gray-700"}`}>
               <span className="block"><span className="mb-1">
                 Explore the World with
               </span>

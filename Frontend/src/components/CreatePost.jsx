@@ -7,7 +7,7 @@ import NavShadow from "./NavShadow"
 
 const CreatePost = () => {
 
-  const { token } = useAuth();
+  const { token, night } = useAuth();
 
   const [imageSrc, setImageSrc] = useState(null);
   const [selectFile, setSelectFile] = useState(null);
@@ -81,12 +81,12 @@ const CreatePost = () => {
   }
 
   return (
-    <div className='md:ml-[18rem]'>
+    <div className={`md:ml-[15rem] pl-[3rem] h-screen ${!night ? "bg-[#2a2834]" : ""}`}>
       <NavShadow />
       <HamMenu /> 
       <div className="container mx-auto p-4">
         <div className="w-full md:py-14">
-          <h1 className="md:text-5xl pl-3 text-[1.8rem] leading-8 md:leading-none font-extrabold text-gray-700 mb-6">Share Your Story – <span className='text-[#00B855]'>Post Now</span></h1>
+          <h1 className={`md:text-5xl pl-3 text-[1.8rem] leading-8 md:leading-none font-extrabold ${!night ? "text-[#bababa]" : ""} text-gray-700 mb-6`}>Share Your Story – <span className='text-[#00B855]'>Post Now</span></h1>
         </div>
         <form onSubmit={handleSubmitPost} className="grid grid-cols-1 gap-6">
           <div className="p-2">
@@ -98,7 +98,7 @@ const CreatePost = () => {
               name="title"
               placeholder="Title"
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#00b855] focus:ring-[#00b855] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: "#f6f6f6" }} />
+              style={{ backgroundColor: `${!night ? "#3b3847" : "#f6f6f6"}` }} />
           </div>
           <div className={`p-2 relative w-full ${selectFile ? "flex" : "hidden"} justify-center`}>
             <div
@@ -119,20 +119,20 @@ const CreatePost = () => {
                 rows="3"
                 placeholder="Description"
                 className="block w-full md:h-48 h-[8rem] rounded-md resize-none border-gray-300 shadow-sm focus:border-[#00b855] focus:ring-[#00b855] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
+                style={{ backgroundColor: `${!night ? "#3b3847" : "#f6f6f6"}` }}
               ></textarea>
             </div>
             <div>
               <label
                 htmlFor='example1'
-                className="w-full md:h-48 h-[5rem] border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
+                className="w-full md:h-48 h-[5rem] border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center hover:bg-gray-50" style={{ backgroundColor: `${!night ? "#3b3847" : "#f6f6f6"}`, color: `${!night ? "#bababa" : ""}` }}>
                 <div>
                   <label title='Upload profile' htmlFor="example1">
                     <div className='cursor-pointer pl-[30px]'>
                       <div className="mx-auto max-w-xs">
                         <label
                           htmlFor="example1"
-                          className="mb-1 block text-sm font-medium text-gray-700">
+                          className={`mb-1 block text-sm font-medium text-gray-700 ${!night ? "text-[#bababa]" : ""}`}>
                           Add media
                         </label>
                         <input
