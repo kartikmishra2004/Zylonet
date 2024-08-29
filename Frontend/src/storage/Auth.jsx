@@ -164,8 +164,10 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    // Night Mode
+    const [night, setNight] = useState(true);
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow }}>
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow, night, setNight }}>
         {children}
     </AuthContext.Provider>
 

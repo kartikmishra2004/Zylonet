@@ -7,17 +7,17 @@ import timeAgo from '../utils/TimeFormatter';
 
 const Home = () => {
 
-  const { isLoggedIn, ranPosts, user } = useAuth();
+  const { isLoggedIn, ranPosts, user, night } = useAuth();
 
   return (
-    <div className='md:ml-[15rem]'>
+    <div className={`md:ml-[15rem] ${!night ? "bg-[#2a2834]" : ""}`}>
       <NavShadow />
       <HamMenu />
       <div className="flex h-[50vh] justify-center items-center">
         <div className="mx-auto w-full md:mt-10 flex justify-center px-4 lg:px-8">
           <div className="md:text-center w-full">
             <h1
-              className="md:text-5xl text-[1.8rem] leading-8 md:leading-none font-extrabold tracking-tight text-gray-700">
+              className={`md:text-5xl text-[1.8rem] leading-8 md:leading-none font-extrabold tracking-tight ${!night ? "text-[white]" : "text-gray-700"}`}>
               <span className="block"><span className="mb-1">
                 Explore the World with
               </span>
@@ -50,8 +50,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="relative my-8 w-full md:max-w-4xl max-w-[18rem] mx-auto bg-white rounded-full">
-        <input placeholder="e.g. Blog" className="rounded-full w-full h-16 bg-transparent py-2 pl-8 pr-32 outline-none border-2 border-gray-100 shadow-md hover:outline-none focus:ring-[#00B855] focus:border-[#00B855]" type="text" name="query" id="query" />
+      <div className={`relative my-8 w-full md:max-w-4xl max-w-[18rem] mx-auto ${!night ? "bg-[#2a2834]" : "bg-white rounded-full"}`}>
+        <input placeholder="e.g. Blog" className={`rounded-full w-full h-16 bg-transparent py-2 pl-8 pr-32 outline-none border-2 ${!night ? "border-[#bababa]" : "border-gray-100"} shadow-md hover:outline-none focus:ring-[#00B855] focus:border-[#00B855]`} type="text" name="query" id="query" />
         <button type="submit" className="absolute inline-flex items-center h-10 px-4 py-2 text-sm text-white transition duration-150 ease-in-out rounded-full outline-none right-3 top-3 bg-[#00B855] sm:px-6 sm:text-base sm:font-medium hover:bg-[#22a45e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B855]">
           <svg className="-ml-0.5 sm:-ml-1 mr-2 w-4 h-4 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -64,42 +64,22 @@ const Home = () => {
           {ranPosts.map((item) => (
             <div
               key={item._id}
-              className="border-r rounded-lg border-b border-l border-zinc-300 lg:border-t bg-white break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal">
+              className={`border-r rounded-lg border-b border-l ${!night ? "border-[#bababa]" : ""} border-zinc-300 lg:border-t ${!night ? "bg-[#3b3847]" : "bg-white"}  break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal`}>
               <img src={item.image} className="w-full mb-3 rounded-t-lg cursor-pointer" />
               <div className="p-4 pt-2">
                 <div>
-                  <Link to="#" className="text-gray-700 font-bold text-lg mb-2 hover:text-[#00B855] inline-block">{item.title}</Link>
-                  <p className="text-gray-700 text-sm">{item.caption}</p>
+                  <Link to="#" className={`text-gray-700 ${!night ? "text-[#bababa]" : ""} font-bold text-lg mb-2 hover:text-[#00B855] inline-block`}>{item.title}</Link>
+                  <p className={`text-gray-700 ${!night ? "text-[#bababa]" : ""} text-sm`}>{item.caption}</p>
                 </div>
-                <div className="flex items-center w-full text-xs justify-between text-gray-500 py-5 mb-8">
-                  <div className="flex items-center space-x-2">
-                    <button className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
-                      <svg className="w-5 h-5 fill-current hover:fill-[#ff2f2f]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
-                      </svg>
-                      <span>{item.likes} Likes</span>
-                    </button>
-                  </div>
-                  <button className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
-                    <svg width="22px" height="22px" viewBox="0 0 24 24" className="w-5 h-5 fill-current hover:fill-[#00B855]" xmlns="http://www.w3.org/2000/svg">
-                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-                      <g id="SVGRepo_iconCarrier">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
-                      </g>
-                    </svg>
-                    <span>{item.comments ? item.comments.length : 0} Comment</span>
-                  </button>
-                </div>
-                <div className="flex items-center">
+                <div className={`flex items-center mt-5`}>
                   <Link
                     to={user._id === item.author._id ? `/profile` : `/viewprofile/${item.author._id}`}
                     state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, following: item.author.following, followers: item.author.followers }}><img className="w-10 h-10 rounded-full mr-4 object-cover" src={item.author.profile} /></Link>
                   <div className="text-sm">
                     <Link
                       to={user._id === item.author._id ? `/profile` : `/viewprofile/${item.author._id}`}
-                      state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, following: item.author.following, followers: item.author.followers }} className="text-gray-700 font-semibold leading-none hover:text-[#00B855]">{item.author.username}</Link>
-                    <p className="text-gray-600">{timeAgo(item.createdAt)}</p>
+                      state={{ username: item.author.username, fullName: item.author.fullName, profile: item.author.profile, aboutme: item.author.aboutme, following: item.author.following, followers: item.author.followers }} className={`text-gray-700 ${!night ? "text-[#bababa]" : ""} font-semibold leading-none hover:text-[#00B855]`}>{item.author.username}</Link>
+                    <p className={`text-gray-600 ${!night ? "text-[#bababa]" : ""}`}>{timeAgo(item.createdAt)}</p>
                   </div>
                 </div>
               </div>

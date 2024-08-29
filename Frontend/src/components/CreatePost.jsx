@@ -83,7 +83,7 @@ const CreatePost = () => {
   return (
     <div className='md:ml-[18rem]'>
       <NavShadow />
-      <HamMenu />
+      <HamMenu /> 
       <div className="container mx-auto p-4">
         <div className="w-full md:py-14">
           <h1 className="md:text-5xl pl-3 text-[1.8rem] leading-8 md:leading-none font-extrabold text-gray-700 mb-6">Share Your Story – <span className='text-[#00B855]'>Post Now</span></h1>
