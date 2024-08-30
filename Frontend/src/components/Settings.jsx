@@ -6,7 +6,7 @@ import DeleteAccount from './DeleteAccount'
 
 const Settings = () => {
 
-  const { setNight, night } = useAuth();
+  const { setNight, night, isLoggedIn } = useAuth();
 
   const handleNightMode = () => {
     setNight(!night);  // Toggle the night mode
@@ -39,7 +39,7 @@ const Settings = () => {
               <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#00B855]"></div>
             </label>
           </div>
-          <div className="mb-10 md:w-[40vw] pt-4 border-t-2 border-gray-200">
+          { isLoggedIn ? (<div className="mb-10 md:w-[40vw] pt-4 border-t-2 border-gray-200">
             <p className="py-2 text-xl font-semibold">Delete Account</p>
             <p className="inline-flex items-center rounded-full bg-rose-100 px-4 py-1 text-rose-600">
               <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -49,7 +49,7 @@ const Settings = () => {
             </p>
             <p className="mt-2">No longer want to use our service? You can delete your account here. This action is not reversible. All information related to this account will be deleted permanently.</p>
             <button onClick={handleDeleteConfirm} className="ml-auto text-sm font-semibold text-rose-600 underline decoration-2">Continue with deletion</button>
-          </div>
+          </div>) : ''}
         </div>
       </div>
       {deleteModal && <DeleteAccount setDeleteModal={setDeleteModal}/>}

@@ -30,7 +30,7 @@ const App = () => {
         <Route exact path='/login' element={isLoggedIn ? <Home /> : <Login />} />
         <Route exact path='/' element={<Home />} />
         <Route exact path='/createpost' element={isLoggedIn ? <CreatePost /> : <Login />} />
-        <Route exact path='/settings' element={isLoggedIn ? <Settings /> : <Login />} />
+        <Route exact path='/settings' element={<Settings />} />
         <Route exact path='/message' element={isLoggedIn ? <Message /> : <Login />} />
         <Route exact path='/logout' element={isLoggedIn ? <Logout /> : <Login />} />
         <Route exact path='/profile' element={isLoggedIn ? <Profile /> : <Login />} />
