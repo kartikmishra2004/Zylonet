@@ -108,3 +108,24 @@ export const updateUser = async (req, res) => {
         next(error)
     }
 }
+
+// User delete logic 
+export const deleteUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        // Find user to be deleted and delete it
+        let user = await User.findById(id);
+        if (!user) {
+            res.status(404).json({ message: "Faild to find user!!" });
+        }
+        if (user._id.toString() != req.user._id) {
+            res.status(401).json({ message: "Unauthorized!!" });
+        } else {
+            user = await User.deleteOne({ _id: id });
+            res.status(200).json({ message: "Account deleted successfully!!" });
+        }
+    } catch (error) {
+        res.status(400).json({ message: "Failed to delete account!!", error })
+    }
+}
