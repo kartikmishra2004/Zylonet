@@ -9,7 +9,7 @@ const HamMenu = () => {
     const { isLoggedIn, night } = useAuth();
 
     return (
-        <div className={isLoggedIn ? "" : "md:mb-0 mb-8"}>
+        <div className={isLoggedIn ? "" : `md:mb-0 ${!night ? "bg-[#312e3d]" : ''}`}>
             <img onClick={handleToggleNav} className={`w-16 p-5 block md:hidden opacity-75 ${!night ? "invert" : ''}`} src={menu} alt="" />
         </div>
     )
