@@ -1,12 +1,33 @@
 import React from 'react'
 import { useAuth } from "../storage/Auth"
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom' 
 
 const DeleteAccount = ({ setDeleteModal }) => {
 
-    const { night } = useAuth()
+    const { night, user, token } = useAuth();
+
+    const navigate = useNavigate();
 
     const handleCloseModal = () => {
         setDeleteModal(false)
+    }
+
+    const handleDeleteAccount = async () => {
+        setDeleteModal(false);
+        const response = await fetch(`http://localhost:8080/api/v1/auth/delete/${user._id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if(response.ok){
+            toast.success("Account deleted successfully!!");
+            navigate('/login')
+        } else{
+            toast.error("Failed to delete account!!");
+        }
+        
     }
 
     return (
@@ -23,7 +44,7 @@ const DeleteAccount = ({ setDeleteModal }) => {
                         <button onClick={handleCloseModal} data-modal-toggle="deleteModal" type="button" className={`py-2 px-3 text-sm font-medium text-gray-900 ${!night ? "bg-[#bababa]" : "bg-white"} rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10`}>
                             No, cancel
                         </button>
-                        <button type="submit" className={`py-2 px-3 text-sm font-medium text-center ${!night ? "text-[#bababa]" : "text-white"} bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900`}>
+                        <button onClick={handleDeleteAccount} type="submit" className={`py-2 px-3 text-sm font-medium text-center ${!night ? "text-[#bababa]" : "text-white"} bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900`}>
                             Yes, I'm sure
                         </button>
                     </div>
