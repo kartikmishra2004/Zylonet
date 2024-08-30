@@ -86,7 +86,7 @@ const CreatePost = () => {
       <HamMenu /> 
       <div className="container mx-auto p-4">
         <div className="w-full md:py-14">
-          <h1 className={`md:text-5xl pl-3 text-[1.8rem] leading-8 md:leading-none font-extrabold ${!night ? "text-[#bababa]" : ""} text-gray-700 mb-6`}>Share Your Story – <span className='text-[#00B855]'>Post Now</span></h1>
+          <h1 className={`md:text-5xl pl-3 text-[1.8rem] leading-8 md:leading-none font-extrabold ${!night ? "text-[#bababa]" : "text-gray-700"} mb-6`}>Share Your Story – <span className='text-[#00B855]'>Post Now</span></h1>
         </div>
         <form onSubmit={handleSubmitPost} className="grid grid-cols-1 gap-6">
           <div className="p-2">
@@ -132,7 +132,7 @@ const CreatePost = () => {
                       <div className="mx-auto max-w-xs">
                         <label
                           htmlFor="example1"
-                          className={`mb-1 block text-sm font-medium text-gray-700 ${!night ? "text-[#bababa]" : ""}`}>
+                          className={`mb-1 block text-sm font-medium ${!night ? "text-[#bababa]" : "text-gray-700"}`}>
                           Add media
                         </label>
                         <input

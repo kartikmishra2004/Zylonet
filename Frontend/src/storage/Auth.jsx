@@ -164,8 +164,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // Night Mode
-    const [night, setNight] = useState(true);
+    // Initialize night mode state from localStorage
+    const [night, setNight] = useState(() => {
+        const savedNightMode = localStorage.getItem('night');
+        return savedNightMode ? JSON.parse(savedNightMode) : true; // Default to true (light mode off)
+    });
+
+    // Update localStorage whenever night mode changes
+    useEffect(() => {
+        localStorage.setItem('night', JSON.stringify(night));
+    }, [night]);
 
     return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow, night, setNight }}>
         {children}

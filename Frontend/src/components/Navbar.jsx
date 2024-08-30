@@ -52,7 +52,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex flex-col items-center w-full mt-2 border-t border-gray-300">
                     <div onClick={handleToggleNav} className='w-full'>
-                        <Link className={`flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300 ${!night ? "hover:bg-[#3b3847] text-[#dadada] " : "hover:bg-gray-300"}`} to="/settings">
+                        <Link className={`flex items-center w-full h-12 px-3 mt-2 rounded ${!night ? "hover:bg-[#3b3847] text-[#dadada] " : "hover:bg-gray-300"}`} to="/settings">
                             <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -62,7 +62,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div onClick={handleToggleNav} className='w-full'>
-                        <Link className={`relative flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300 ${!night ? "hover:bg-[#3b3847] text-[#dadada] " : "hover:bg-gray-300"}`} to="/message">
+                        <Link className={`relative flex items-center w-full h-12 px-3 mt-2 rounded ${!night ? "hover:bg-[#3b3847] text-[#dadada] " : "hover:bg-gray-300"}`} to="/message">
                             <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

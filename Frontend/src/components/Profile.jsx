@@ -46,8 +46,8 @@ const Profile = () => {
     <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
       <NavShadow />
       <div
-        className={`mx-auto w-full ${!night ? "bg-[#2a2834]" : ""} bg-white shadow-xl text-gray-900`}>
-        <div className="rounded-t-lg h-32">
+        className={`mx-auto w-full ${!night ? "bg-[#2a2834]" : "bg-white"} shadow-xl text-gray-900`}>
+        <div className="rounded-t-lg h-32"> 
           <HamMenu />
         </div>
         <div className="mx-auto flex justify-center items-center w-32 h-32 relative -mt-16 border-2 border-[#dbdbdb] rounded-full overflow-hidden">
@@ -55,9 +55,9 @@ const Profile = () => {
         </div>
         <div className="text-center mt-2">
           <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""}`}>{user.fullName}</h2>
-          <p className={`text-gray-500 ${!night ? "text-[#999999]" : ""}`}>{user.username}</p>
+          <p className={`${!night ? "text-[#999999]" : "text-gray-500"}`}>{user.username}</p>
         </div>
-        <ul className={`py-4 mt-5 ${!night ? "text-[#bababa]" : ""} text-gray-700 flex items-center justify-evenly`}>
+        <ul className={`py-4 mt-5 ${!night ? "text-[#bababa]" : "text-gray-700"} flex items-center justify-evenly`}>
           <li className="flex flex-col items-center justify-around">
             <button className='text-sm flex flex-col items-center justify-around'>
               <img className='md:w-6 w-5' src={heart} alt="" />
@@ -84,7 +84,7 @@ const Profile = () => {
           <div className="flex justify-center items-center w-full">
             <div className="flex flex-col justify-center items-center md:w-[50vw] w-[90vw]">
               <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""} text-xl w-full`}>About me</h2>
-              <pre className={`text-gray-500 ${!night ? "text-[#999999]" : ""} whitespace-pre-wrap mt-1 text-left font-sans`}>{user.aboutme}</pre>
+              <pre className={`${!night ? "text-[#999999]" : "text-gray-500"} whitespace-pre-wrap mt-1 text-left font-sans`}>{user.aboutme}</pre>
             </div>
           </div>
           <div className={`line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 ${!night ? "border-[#bababa]" : ""}border-gray-200`}></div>

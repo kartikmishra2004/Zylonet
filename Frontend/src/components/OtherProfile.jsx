@@ -69,7 +69,7 @@ const OtherProfile = () => {
         <div className='md:ml-[15rem] transition-all duration-500 ease-in-out'>
             <NavShadow />
             <div
-                className={`mx-auto w-full bg-white ${!night ? "bg-[#2a2834]" : ""} shadow-xl text-gray-900`}>
+                className={`mx-auto w-full ${!night ? "bg-[#2a2834]" : "bg-white"} shadow-xl text-gray-900`}>
                 <div className="rounded-t-lg h-32">
                     <HamMenu />
                 </div>
@@ -78,9 +78,9 @@ const OtherProfile = () => {
                 </div>
                 <div className="text-center mt-2">
                     <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""}`}>{fullName}</h2>
-                    <p className={`text-gray-500 ${!night ? "text-[#999999]" : ""}`}>{username}</p>
+                    <p className={`${!night ? "text-[#999999]" : "text-gray-500"}`}>{username}</p>
                 </div>
-                <ul className={`py-4 mt-5 ${!night ? "text-[#bababa]" : ""} text-gray-700 flex items-center justify-evenly`}>
+                <ul className={`py-4 mt-5 ${!night ? "text-[#bababa]" : "text-gray-700"} flex items-center justify-evenly`}>
                     <li className="flex flex-col items-center justify-around">
                         <button className='text-sm flex flex-col items-center justify-around'>
                             <img className='md:w-6 w-5' src={heart} alt="" />
@@ -112,25 +112,25 @@ const OtherProfile = () => {
                     <div className="flex justify-center items-center w-full">
                         <div className="flex flex-col justify-center items-center md:w-[50vw] w-[90vw]">
                             <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""} text-xl w-full`}>About me</h2>
-                            <pre className={`text-gray-500 w-full ${!night ? "text-[#999999]" : ""} whitespace-pre-wrap mt-1 text-left font-sans`}>{aboutme}</pre>
+                            <pre className={` w-full ${!night ? "text-[#999999]" : "text-gray-500"} whitespace-pre-wrap mt-1 text-left font-sans`}>{aboutme}</pre>
                         </div>
                     </div>
-                    <div className={`line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 ${!night ? "border-[#bababa]" : ""}border-gray-200`}></div>
+                    <div className={`line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 ${!night ? "border-[#bababa]" : "border-gray-200"}`}></div>
                     <div className="columns-1 md:columns-2 xl:columns-3 gap-7">
                         {posts.length > 0 ? posts.map((item) => (<div
                             key={item._id}
-                            className={`border-r rounded-lg border-b border-l border-zinc-300 lg:border-t ${!night ? "bg-[#3b3847]" : ""} bg-white break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal`}>
+                            className={`border-r rounded-lg border-b border-l border-zinc-300 lg:border-t ${!night ? "bg-[#3b3847]" : "bg-white"} break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal`}>
                             <img src={item.image} className="w-full mb-3 rounded-t-lg cursor-pointer" />
                             <div className="p-4 pt-2">
                                 <div>
-                                    <a href="#" className={`text-gray-700 font-bold text-lg mb-2 hover:text-[#00B855] inline-block ${!night ? "text-[#bababa]" : ""}`}>{item.title}</a>
-                                    <p className={`text-gray-700 text-sm ${!night ? "text-[#bababa]" : ""}`}>{item.caption}</p>
+                                    <a href="#" className={`font-bold text-lg mb-2 hover:text-[#00B855] inline-block ${!night ? "text-[#bababa]" : "text-gray-700"}`}>{item.title}</a>
+                                    <p className={`text-sm ${!night ? "text-[#bababa]" : "text-gray-700"}`}>{item.caption}</p>
                                 </div>
                                 <div className="flex items-center w-full text-xs justify-between text-gray-500 py-5">
                                 </div>
                                 <div className="flex items-center">
                                     <div className="text-sm">
-                                        <p className={`text-gray-600 ${!night ? "text-[#bababa]" : ""}`}>{timeAgo(item.createdAt)}</p>
+                                        <p className={`${!night ? "text-[#bababa]" : "text-gray-600 "}`}>{timeAgo(item.createdAt)}</p>
                                     </div>
                                 </div>
                             </div>
