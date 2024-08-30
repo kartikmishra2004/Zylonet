@@ -81,7 +81,7 @@ const CreatePost = () => {
   }
 
   return (
-    <div className={`md:ml-[15rem] pl-[3rem] h-screen ${!night ? "bg-[#2a2834]" : ""}`}>
+    <div className={`md:ml-[15rem] md:pl-[3rem] h-screen ${!night ? "bg-[#2a2834]" : ""}`}>
       <NavShadow />
       <HamMenu /> 
       <div className="container mx-auto p-4">

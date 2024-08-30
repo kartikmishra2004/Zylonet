@@ -6,11 +6,11 @@ import { useAuth } from '../storage/Auth';
 const HamMenu = () => {
 
     const { handleToggleNav } = useToggleNav();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, night } = useAuth();
 
     return (
         <div className={isLoggedIn ? "" : "md:mb-0 mb-8"}>
-            <img onClick={handleToggleNav} className='w-16 p-5 block md:hidden opacity-75' src={menu} alt="" />
+            <img onClick={handleToggleNav} className={`w-16 p-5 block md:hidden opacity-75 ${!night ? "invert" : ''}`} src={menu} alt="" />
         </div>
     )
 }

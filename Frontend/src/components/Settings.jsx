@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HamMenu from "./HamMenu"
 import NavShadow from "./NavShadow"
 import { useAuth } from '../storage/Auth'
+import DeleteAccount from './DeleteAccount'
 
 const Settings = () => {
 
@@ -11,8 +12,14 @@ const Settings = () => {
     setNight(!night);  // Toggle the night mode
   }
 
+  const [deleteModal, setDeleteModal] = useState(false)
+
+  const handleDeleteConfirm = () => {
+    setDeleteModal(true);
+  }
+
   return (
-    <div className={`md:ml-[15rem] pl-[3rem] h-screen ${!night ? 'bg-[#2a2834] text-[#dadada]' : ''} transition-all duration-500 ease-in-out`}>
+    <div className={`md:ml-[15rem] md:pl-[3rem] h-screen ${!night ? 'bg-[#2a2834] text-[#dadada]' : ''} transition-all duration-500 ease-in-out`}>
       <NavShadow />
       <HamMenu />
       <div className="container mx-auto p-4">
@@ -22,12 +29,12 @@ const Settings = () => {
           <div className="md:w-[40vw] py-4 flex items-center gap-3">
             <p className="py-2 text-xl font-semibold">Dark mode</p>
             <label className="inline-flex items-center cursor-pointer">
-              <input 
-                onClick={handleNightMode} 
-                type="checkbox" 
-                className="sr-only peer" 
-                checked={!night} 
-                readOnly 
+              <input
+                onClick={handleNightMode}
+                type="checkbox"
+                className="sr-only peer"
+                checked={!night}
+                readOnly
               />
               <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#00B855]"></div>
             </label>
@@ -41,10 +48,11 @@ const Settings = () => {
               Proceed with caution
             </p>
             <p className="mt-2">No longer want to use our service? You can delete your account here. This action is not reversible. All information related to this account will be deleted permanently.</p>
-            <button className="ml-auto text-sm font-semibold text-rose-600 underline decoration-2">Continue with deletion</button>
+            <button onClick={handleDeleteConfirm} className="ml-auto text-sm font-semibold text-rose-600 underline decoration-2">Continue with deletion</button>
           </div>
         </div>
       </div>
+      {deleteModal && <DeleteAccount setDeleteModal={setDeleteModal}/>}
     </div>
   )
 }

@@ -24,7 +24,7 @@ const Navbar = () => {
                         </div>
                     </Link>
                 </div>
-                <div onClick={handleToggleNav} className="sm:hidden mt-4 mr-4 rounded-full closeNav text-black w-7 h-7 flex justify-center items-center opacity-45"><img className='w-3' src={closeIcon} alt="" />
+                <div onClick={handleToggleNav} className="sm:hidden mt-4 mr-4 rounded-full closeNav text-black w-7 h-7 flex justify-center items-center opacity-45"><img className={`w-3 ${!night ? "invert": ''}`} src={closeIcon} alt="" />
                 </div>
             </div>
             <div className="w-full px-2">
