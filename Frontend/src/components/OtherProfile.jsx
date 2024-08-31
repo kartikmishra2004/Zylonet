@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import NavShadow from './NavShadow';
 import HamMenu from './HamMenu';
 import heart from "../assets/heart.png";
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import timeAgo from "../utils/TimeFormatter";
 import addFriend from "../assets/add-friend.png";
 import unfollow from "../assets/unfollow.png";
 import { useAuth } from '../storage/Auth';
 import { useNavigate } from 'react-router-dom';
+import chatIcon from "../assets/chat.png"
 
 const OtherProfile = () => {
 
@@ -107,6 +108,12 @@ const OtherProfile = () => {
                             <span>Unfollow</span>
                         </button>
                     </li>)}
+                    <li className="flex flex-col items-center justify-between">
+                        <Link to={`/messageuser/${id}`} state={{ fullName: fullName, profile: profile }} className='text-sm flex flex-col items-center justify-around'>
+                            <img className='md:w-5 w-4' src={chatIcon} alt="" />
+                            <span>Message</span>
+                        </Link>
+                    </li>
                 </ul>
                 <div className="md:px-10 w-full px-6 py-5 mt-2">
                     <div className="flex justify-center items-center w-full">

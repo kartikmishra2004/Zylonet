@@ -8,6 +8,7 @@ import Message from './components/Message'
 import Logout from './components/Logout'
 import Profile from './components/Profile'
 import OtherProfile from './components/OtherProfile';
+import ChatUser from './components/ChatUser';
 import {
   BrowserRouter,
   Routes,
@@ -34,6 +35,7 @@ const App = () => {
         <Route exact path='/message' element={isLoggedIn ? <Message /> : <Login />} />
         <Route exact path='/logout' element={isLoggedIn ? <Logout /> : <Login />} />
         <Route exact path='/profile' element={isLoggedIn ? <Profile /> : <Login />} />
+        <Route exact path='/messageuser/:id' element={isLoggedIn ? <ChatUser /> : <Login />} />
         <Route exact path='/viewprofile/:id' element={<OtherProfile />} />
       </Routes>
     </BrowserRouter>
