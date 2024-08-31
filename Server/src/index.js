@@ -9,14 +9,41 @@ import unfollow from "./routes/unfollow.route.js";
 import follow from "./routes/follow.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
+import http from "http";
+import { Server } from "socket.io";
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(cors({
     origin: ["http://localhost:5173"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
-}))
+}));
+
+// Socket.IO server
+const io = new Server(server, {
+    cors: {
+        origin: ["http://localhost:5173"],
+        methods: ["POST", "GET", "PUT", "DELETE"],
+        credentials: true,
+    }
+});
+
+// Socket connection
+io.on("connection", (socket) => {
+
+    // Join room
+    socket.on("join_room", (roomName) => {
+        socket.join(roomName);
+    });
+
+    // Handle private message
+    socket.on("private_message", ({ senderId, roomName, message }) => {
+        io.to(roomName).emit("receive_message", { senderId, message });
+    });
+});
+
 
 app.use(express.json());
 
@@ -43,7 +70,7 @@ app.use(errorMiddleware);
 const port = process.env.PORT || 3000;
 connectDb()
     .then(() => {
-        app.listen(port, () => {
+        server.listen(port, () => {
             console.log(`App is running on port ${port}`);
         });
     });
