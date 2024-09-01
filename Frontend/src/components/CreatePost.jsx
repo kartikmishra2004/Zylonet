@@ -55,7 +55,7 @@ const CreatePost = () => {
       formData.append('post', selectFile);
       formData.append('title', post.title);
       formData.append('caption', post.caption);
-      const response = await fetch("https://zylonet-server.vercel.app/api/v1/post/createpost", {
+      const response = await fetch("https://zylonet-server.onrender.com/api/v1/post/createpost", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
