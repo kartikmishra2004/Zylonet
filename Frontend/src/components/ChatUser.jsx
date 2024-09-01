@@ -88,7 +88,7 @@ const ChatUser = () => {
                                         alt="User Avatar"
                                         className={`w-8 h-8 rounded-full mr-2 ${msg.senderId === user._id ? "ml-2" : "mr-2"}`}
                                     />
-                                    <div className={`bg-${msg.senderId === user._id ? "[#00b855]" : "[#bababa]"} ${msg.senderId === user._id ? "text-white" : "text-black"} rounded-lg p-2 shadow max-w-sm`}>
+                                    <div className={`bg-${msg.senderId === user._id ? "[#00b855]" : "gray-200"} ${msg.senderId === user._id ? "text-white" : "text-black"} rounded-lg p-2 shadow max-w-sm`}>
                                         {msg.message}
                                     </div>
                                 </div>
