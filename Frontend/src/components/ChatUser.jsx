@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../storage/Auth';
 import io from "socket.io-client";
-import sentSound from "../../public/sounds/pop.mp3";
+import sentSound from "../../sounds/pop.mp3";
+import receiveSound from "../../sounds/notification.wav";
 
 const socket = io.connect("http://localhost:8080");
 
@@ -24,6 +25,10 @@ const ChatUser = () => {
         // Handler function for incoming messages
         const handleReceiveMessage = ({ senderId, message }) => {
             setChat((prevChat) => [...prevChat, { message, senderId }]);
+            if (!senderId === user._id) {
+                const audio = new Audio(receiveSound);
+                audio.play();
+            }
         };
 
         // Join room
