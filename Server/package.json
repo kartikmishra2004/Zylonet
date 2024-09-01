@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "build": "npx vite build"
+    "start": "nodemon src/index.js"
   },
   "keywords": [
     "socialmedia",
@@ -28,11 +27,5 @@
     "socket.io": "^4.7.5",
     "uuid": "^10.0.0",
     "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "vite": "^5.4.2"
-  },
-  "engines": {
-    "node": ">=16"
   }
 }
