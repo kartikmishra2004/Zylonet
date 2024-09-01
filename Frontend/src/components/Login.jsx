@@ -30,7 +30,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://zylonet-server.onrender.com/api/v1/auth/login", {
+            const response = await fetch("https://zylonet-server.up.railway.app/api/v1/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -7,7 +7,7 @@ import receiveSound from "../../sounds/notification.wav";
 import HamMenu from "./HamMenu"
 import NavShadow from "./NavShadow"
 
-const socket = io.connect("https://zylonet-server.onrender.com");
+const socket = io.connect("https://zylonet-server.up.railway.app");
 
 const ChatUser = () => {
     const location = useLocation();
