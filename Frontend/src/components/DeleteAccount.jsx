@@ -15,7 +15,7 @@ const DeleteAccount = ({ setDeleteModal }) => {
 
     const handleDeleteAccount = async () => {
         setDeleteModal(false);
-        const response = await fetch(`http://localhost:8080/api/v1/auth/delete/${user._id}`, {
+        const response = await fetch(`https://zylonet-server.vercel.app/api/v1/auth/delete/${user._id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
