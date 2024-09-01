@@ -77,7 +77,7 @@ const ChatUser = () => {
                     Chat with {fullName}
                 </h1>
             </div>
-            <div className="md:h-[70vh] h-[84vh] w-full md:pr-40 flex flex-col">
+            <div className="md:h-[70vh] h-[80vh] w-full md:pr-40 flex flex-col">
                 <div className={`${!night ? "bg-[#312e3d]" : "bg-[#f3f4f6]"} flex-1 overflow-y-auto flex flex-col-reverse`}>
                     <div className="px-4 py-2">
                         {chat.map((msg, index) => (
