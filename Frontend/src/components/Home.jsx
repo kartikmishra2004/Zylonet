@@ -4,6 +4,7 @@ import NavShadow from "./NavShadow"
 import { useAuth } from "../storage/Auth"
 import { Link } from "react-router-dom"
 import timeAgo from '../utils/TimeFormatter';
+import ChatWithAI from './ChatWithAI'
 
 const Home = () => {
 
@@ -13,6 +14,7 @@ const Home = () => {
     <div className={`md:ml-[15rem] ${!night ? "bg-[#2a2834]" : ""}`}>
       <NavShadow />
       <HamMenu />
+      <ChatWithAI />
       <div className="flex h-[50vh] justify-center items-center">
         <div className="mx-auto w-full md:mt-10 flex justify-center px-4 lg:px-8">
           <div className="md:text-center w-full">

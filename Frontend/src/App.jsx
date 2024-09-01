@@ -16,7 +16,6 @@ import {
 } from "react-router-dom"
 import Navbar from './components/Navbar'
 import { useAuth } from './storage/Auth';
-import ChatWithAI from './components/ChatWithAI'
 
 const App = () => {
 
@@ -25,7 +24,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <ChatWithAI />
       <Routes>
         <Route exact path='/signup' element={isLoggedIn ? <Home /> : <Signup />} />
         <Route exact path='/login' element={isLoggedIn ? <Home /> : <Login />} />
