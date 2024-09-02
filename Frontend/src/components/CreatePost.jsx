@@ -55,7 +55,7 @@ const CreatePost = () => {
       formData.append('post', selectFile);
       formData.append('title', post.title);
       formData.append('caption', post.caption);
-      const response = await fetch("https://zylonet-server.up.railway.app/api/v1/post/createpost", {
+      const response = await fetch("http:localhost:8080/api/v1/post/createpost", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`

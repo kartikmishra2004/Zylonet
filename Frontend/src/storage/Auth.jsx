@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     // JWT Authentication - to get currently logged in user data
     const userAuthentication = async () => {
         try {
-            const response = await fetch("https://zylonet-server.up.railway.app/api/v1/auth/userauth", {
+            const response = await fetch("http:localhost:8080/api/v1/auth/userauth", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     // Calling api for updating user
     const updateProfile = async ({ updatedUser, id }) => {
         try {
-            const response = await fetch(`https://zylonet-server.up.railway.app/api/v1/auth/update/${id}`, {
+            const response = await fetch(`http:localhost:8080/api/v1/auth/update/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 
     // Calling API for deleting user's post
     const handleDeletePost = async (id) => {
-        const response = await fetch(`https://zylonet-server.up.railway.app/api/v1/post/deletepost/${id}`, {
+        const response = await fetch(`http:localhost:8080/api/v1/post/deletepost/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }) => {
     // Calling API for fetching random posts
     const randomPosts = async () => {
         try {
-            const response = await fetch("https://zylonet-server.up.railway.app/api/v1/randomposts/", {
+            const response = await fetch("http:localhost:8080/api/v1/randomposts/", {
                 method: "GET",
             });
             const res_data = await response.json();
@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
                 userId: user._id,
                 targetUserId: id,
             }
-            const response = await fetch("https://zylonet-server.up.railway.app/api/v1/follow", {
+            const response = await fetch("http:localhost:8080/api/v1/follow", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -146,7 +146,7 @@ export const AuthProvider = ({ children }) => {
                 userId: user._id,
                 targetUserId: id,
             }
-            const response = await fetch("https://zylonet-server.up.railway.app/api/v1/unfollow", {
+            const response = await fetch("http:localhost:8080/api/v1/unfollow", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
