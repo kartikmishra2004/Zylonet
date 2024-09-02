@@ -33,7 +33,7 @@ const OtherProfile = () => {
     // Calling API for fetching posts of clicked user
     const fetchPosts = async () => {
         try {
-            const response = await fetch(`http:localhost:8080/api/v1/post/readpost/${id}`, {
+            const response = await fetch(`http://localhost:8080/api/v1/post/readpost/${id}`, {
                 method: "GET",
             });
             const res_data = await response.json();

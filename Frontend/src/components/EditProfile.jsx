@@ -31,7 +31,7 @@ const EditProfile = ({ setShowModal }) => {
         try {
             const formData = new FormData();
             formData.append('avatar', file);
-            const response = await fetch("http:localhost:8080/api/v1/profile/upload", {
+            const response = await fetch("http://localhost:8080/api/v1/profile/upload", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
