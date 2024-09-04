@@ -6,6 +6,7 @@ import { useAuth } from "../storage/Auth.jsx"
 import { toast } from 'react-toastify';
 import HamMenu from "./HamMenu.jsx"
 import NavShadow from "./NavShadow.jsx"
+import loading from "../assets/loading.gif";
 
 const Login = () => {
 
@@ -13,6 +14,8 @@ const Login = () => {
         username: "",
         password: "",
     });
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -29,6 +32,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             const response = await fetch("https://zylonet-server.onrender.com/api/v1/auth/login", {
                 method: "POST",
@@ -46,8 +50,10 @@ const Login = () => {
                 });
                 navigate("/");
                 toast.success("Login successfully!!");
+                setIsLoading(false);
             } else {
                 toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+                setIsLoading(false);
             }
         } catch (error) {
             console.log("Failed to login!!");
@@ -86,9 +92,9 @@ const Login = () => {
                                         type="password" placeholder="Password" name='password' onChange={handleChangeInput} />
                                     <button
                                         className="mt-5 tracking-wide font-semibold bg-[#00B855] text-gray-100 w-full py-4 rounded-lg hover:bg-[#22a45e] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                        <img className='w-[25px] invert' src={loginIcon} alt="" />
+                                        <img className={`w-[25px] invert ${isLoading ? "hidden" : ""}`} src={loginIcon} alt="" />
                                         <span className="ml-3">
-                                            Login
+                                            {isLoading ? (<img className='w-[30px] brightness-200' src={loading}></img>) : "Login"}
                                         </span>
                                     </button>
                                     <p className={`mt-6 text-sm ${!night ? "text-[#bababa]" : "text-gray-600"} text-center`}>
