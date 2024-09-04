@@ -4,6 +4,8 @@ import { profileUpload } from "../controllers/auth.controller.js";
 import { v4 as uuidv4 } from 'uuid';
 import cloudinary from "cloudinary";
 import authMiddleware from "../middlewares/auth.middleware.js";
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
@@ -14,10 +16,17 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Multer disk storage
+// Ensure uploads directory exists
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './src/uploads')
+        const uploadPath = path.join(__dirname, '../uploads');
+        
+        // Check if the directory exists, if not, create it
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
+        }
+        
+        cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
         const random = uuidv4();
@@ -27,6 +36,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// Route for uploading profile avatar
 router.route("/upload").post(upload.single('avatar'), authMiddleware, profileUpload);
 
 export default router;

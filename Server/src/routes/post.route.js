@@ -3,7 +3,9 @@ import multer from "multer";
 import { v4 as uuidv4 } from 'uuid';
 import cloudinary from "cloudinary";
 import authMiddleware from "../middlewares/auth.middleware.js";
-import { createPost, readPost, deletePost, readPostById } from "../controllers/post.controller.js"
+import { createPost, readPost, deletePost, readPostById } from "../controllers/post.controller.js";
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
@@ -14,10 +16,17 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Multer disk storage
+// Ensure uploads directory exists
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './src/uploads/posts');
+        const uploadPath = path.join(__dirname, '../uploads/posts');
+        
+        // Check if the directory exists, if not, create it
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
+        }
+        
+        cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
         const random = uuidv4();
@@ -34,9 +43,9 @@ router.route("/createpost").post(upload.single('post'), authMiddleware, createPo
 router.route("/readpost").get(authMiddleware, readPost);
 
 // Route for read all posts of a specific user
-router.route("/readpost/:id").get(readPostById); 
+router.route("/readpost/:id").get(readPostById);
 
 // Route for delete post
 router.route("/deletepost/:id").delete(authMiddleware, deletePost);
 
-export default router; 
+export default router;
