@@ -84,7 +84,7 @@ const Profile = () => {
           <div className="flex justify-center items-center w-full">
             <div className="flex flex-col justify-center items-center md:w-[50vw] w-[90vw]">
               <h2 className={`font-semibold ${!night ? "text-[#bababa]" : ""} text-xl w-full`}>About me</h2>
-              <pre className={`${!night ? "text-[#999999]" : "text-gray-500"} whitespace-pre-wrap mt-1 text-left font-sans`}>{user.aboutme}</pre>
+              <pre className={`${!night ? "text-[#999999]" : "text-gray-500"} whitespace-pre-wrap mt-1 w-full text-left font-sans`}>{user.aboutme}</pre>
             </div>
           </div>
           <div className={`line md:my-[3rem] my-[1.5rem] md:w-[70vw] w-[85vw] mx-auto border-t-2 ${!night ? "border-[#bababa]" : ""}border-gray-200`}></div>
