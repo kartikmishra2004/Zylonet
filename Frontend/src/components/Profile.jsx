@@ -23,7 +23,7 @@ const Profile = () => {
   }
 
   const fetchPosts = async () => {
-    const response = await fetch("http://localhost:8080/api/v1/post/readpost", {
+    const response = await fetch("https://zylonet-server.onrender.com/api/v1/post/readpost", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
