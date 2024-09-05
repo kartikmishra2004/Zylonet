@@ -11,9 +11,8 @@ import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
-import { User } from "./models/user.model.js";
-import { Message } from "./models/message.model.js";
-import { Chat } from "./models/chat.model.js";
+import Message from "./models/message.model.js";
+import Chat from "./models/chat.model.js";
 
 const app = express();
 const server = http.createServer(app);
