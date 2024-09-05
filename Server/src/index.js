@@ -13,6 +13,7 @@ import http from "http";
 import { Server } from "socket.io";
 import Message from "./models/message.model.js";
 import Chat from "./models/chat.model.js";
+import chatRout from "./routes/chat.rout.js";
 
 const app = express();
 const server = http.createServer(app);
@@ -92,6 +93,9 @@ app.use("/api/v1/follow", follow);
 
 // API for unfollow
 app.use("/api/v1/unfollow", unfollow);
+
+// API for Chat
+app.use("/api/v1/chat", chatRout);
 
 app.use(errorMiddleware);
 
