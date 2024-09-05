@@ -29,7 +29,9 @@ const ChatUser = () => {
                 const response = await fetch(`https://zylonet-server.onrender.com/api/v1/chat/${roomName}`, {
                     method: "GET",
                 });
-                setChat(response.data.messages); // Set the chat history to the state
+                const res_data = await response.json();
+                console.log(res_data.messages)
+                setChat(res_data.messages);
             } catch (error) {
                 console.error("Error fetching chat history:", error);
             }
@@ -62,7 +64,7 @@ const ChatUser = () => {
 
     const handleSendMessage = () => {
         if (message.trim()) {
-            const newMessage = { message, senderId: user._id };
+            const newMessage = { content: message, sender_id: user._id };
 
             // Send message to the server
             socket.emit("private_message", {
@@ -71,16 +73,18 @@ const ChatUser = () => {
                 message: message,
             });
 
-            // Update the chat with the new message
-            setChat((prevChat) => [...prevChat]);
+            // Update the chat with the new message and mark it as sent by the current user
+            setChat((prevChat) => [...prevChat, newMessage]);
 
             // Clear the input field
             setMessage("");
+
             // Play sound
             const audio = new Audio(sentSound);
             audio.play();
         }
     };
+
 
     return (
         <div className={`${!night ? "bg-[#2a2834] text-[#bababa]" : ""} md:ml-[15rem] md:h-screen md:pl-[3rem] transition-all duration-500 ease-in-out`}>
@@ -95,15 +99,15 @@ const ChatUser = () => {
                 <div className={`${!night ? "bg-[#312e3d]" : "bg-[#f3f4f6]"} flex-1 overflow-y-auto flex flex-col-reverse`}>
                     <div className="px-4 py-2">
                         {chat.map((msg, index) => (
-                            <div key={index} className={`flex ${msg.senderId === user._id ? "justify-end" : "justify-start"} mb-2 items-start`}>
-                                <div className={`flex items-center ${msg.senderId === user._id ? "flex-row-reverse" : ""}`}>
+                            <div key={index} className={`flex ${msg.sender_id === user._id ? "justify-end" : "justify-start"} mb-2 items-start`}>
+                                <div className={`flex items-center ${msg.sender_id === user._id ? "flex-row-reverse" : ""}`}>
                                     <img
-                                        src={msg.senderId === user._id ? user.profile : profile}
+                                        src={msg.sender_id === user._id ? user.profile : profile}
                                         alt="User Avatar"
-                                        className={`w-8 h-8 rounded-full mr-2 ${msg.senderId === user._id ? "ml-2" : "mr-2"}`}
+                                        className={`w-8 h-8 rounded-full ${msg.sender_id === user._id ? "ml-2" : "mr-2"}`}
                                     />
-                                    <div className={`bg-${msg.senderId === user._id ? "[#00b855]" : "gray-100"} ${msg.senderId === user._id ? "text-white" : "text-black"} rounded-lg p-2 shadow max-w-sm`}>
-                                        {msg.message}
+                                    <div className={`bg-${msg.sender_id === user._id ? "[#00b855]" : "gray-100"} ${msg.sender_id === user._id ? "text-white" : "text-black"} rounded-lg p-2 shadow max-w-sm`}>
+                                        {msg.content}
                                     </div>
                                 </div>
                             </div>
