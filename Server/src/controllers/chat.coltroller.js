@@ -2,6 +2,7 @@ import Chat from "../models/chat.model.js";
 
 const chat = async (req, res) => {
     try {
+        const { roomName } = req.params;
         const chat = await Chat.findOne({ _id: roomName })
             .populate("messages")
             .exec();
