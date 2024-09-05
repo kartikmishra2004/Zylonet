@@ -34,7 +34,6 @@ const io = new Server(server, {
 
 // Socket connection
 io.on("connection", (socket) => {
-
     // Join room
     socket.on("join_room", (roomName) => {
         socket.join(roomName);
@@ -50,24 +49,29 @@ io.on("connection", (socket) => {
             });
             await newMessage.save();
 
-            let chat = await Chat.findOne({ _id: roomName });
+            // Find or create a new chat for the room
+            let chat = await Chat.findById(roomName);
             if (!chat) {
                 chat = new Chat({
-                    _id: roomName,
+                    _id: roomName,  // roomName is used as the _id
                     senderId: senderId,
-                    messages: [newMessage._id],
+                    messages: [newMessage._id],  // Store message IDs in the chat
                 });
             } else {
-                chat.messages.push(newMessage._id);
+                chat.messages.push(newMessage._id);  // Add new message to existing chat
             }
+
+            // Save the chat document
             await chat.save();
+
+            // Emit the message to the users in the room
             io.to(roomName).emit("receive_message", { senderId, message });
         } catch (error) {
             console.error("Error saving message to DB:", error);
         }
-
     });
 });
+
 
 app.use(express.json());
 
