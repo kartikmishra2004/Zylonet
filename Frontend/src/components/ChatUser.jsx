@@ -24,6 +24,20 @@ const ChatUser = () => {
     const roomName = [user._id, id].sort().join('_');
 
     useEffect(() => {
+        const fetchChatHistory = async () => {
+            try {
+                const response = await fetch(`https://zylonet-server.onrender.com/api/v1/chat/${roomName}`, {
+                    method: "GET",
+                });
+                setChat(response.data.messages); // Set the chat history to the state
+            } catch (error) {
+                console.error("Error fetching chat history:", error);
+            }
+        };
+        fetchChatHistory();
+    }, [roomName]);
+
+    useEffect(() => {
         // Handler function for incoming messages
         const handleReceiveMessage = ({ senderId, message }) => {
             setChat((prevChat) => [...prevChat, { message, senderId }]);
