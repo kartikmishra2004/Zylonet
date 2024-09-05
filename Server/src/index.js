@@ -56,6 +56,7 @@ io.on("connection", (socket) => {
             if (!chat) {
                 chat = new Chat({
                     _id: roomName,  // roomName is used as the _id
+                    senderId: senderId,
                     messages: [newMessage._id],  // Initialize with the first message
                 });
             } else {
