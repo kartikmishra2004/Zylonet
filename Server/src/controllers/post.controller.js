@@ -52,7 +52,7 @@ export const readPostById = async (req, res) => {
     }
 }
 
-// Logic for reading all posts of logged in user
+// Logic for delete post
 export const deletePost = async (req, res) => {
     try {
         //    Find post to be deleted and delete it 

@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Post from "../models/post.model.js";
 import cloudinary from "cloudinary";
 import fs from "fs";
 
@@ -123,6 +124,7 @@ export const deleteUser = async (req, res) => {
             res.status(401).json({ message: "Unauthorized!!" });
         } else {
             user = await User.deleteOne({ _id: id });
+            await Post.deleteMany({ author: id });
             res.status(200).json({ message: "Account deleted successfully!!" });
         }
     } catch (error) {
