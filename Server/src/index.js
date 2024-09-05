@@ -54,7 +54,7 @@ io.on("connection", (socket) => {
             if (!chat) {
                 chat = new Chat({
                     _id: roomName,
-                    participants: roomName.split('_'),
+                    senderId: senderId,
                     messages: [newMessage._id],
                 });
             } else {
