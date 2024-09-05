@@ -11,9 +11,12 @@ import errorMiddleware from "./middlewares/error.middleware.js";
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
+import { User } from "./models/user.model.js";
+import { Message } from "./models/message.model.js";
+import { Chat } from "./models/chat.model.js";
 
 const app = express();
-const server = http.createServer(app); 
+const server = http.createServer(app);
 
 app.use(cors({
     origin: ["http://localhost:5173", "https://zylonet.vercel.app"],
@@ -39,11 +42,33 @@ io.on("connection", (socket) => {
     });
 
     // Handle private message
-    socket.on("private_message", ({ senderId, roomName, message }) => {
-        io.to(roomName).emit("receive_message", { senderId, message });
+    socket.on("private_message", async ({ senderId, roomName, message }) => {
+        try {
+            // Create new message
+            const newMessage = new Message({
+                sender_id: senderId,
+                content: message,
+            });
+            await newMessage.save();
+
+            let chat = await Chat.findOne({ _id: roomName });
+            if (!chat) {
+                chat = new Chat({
+                    _id: roomName,
+                    participants: roomName.split('_'),
+                    messages: [newMessage._id],
+                });
+            } else {
+                chat.messages.push(newMessage._id);
+            }
+            await chat.save();
+            io.to(roomName).emit("receive_message", { senderId, message });
+        } catch (error) {
+            console.error("Error saving message to DB:", error);
+        }
+
     });
 });
-
 
 app.use(express.json());
 
