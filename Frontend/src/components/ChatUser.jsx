@@ -23,21 +23,6 @@ const ChatUser = () => {
 
     const roomName = [user._id, id].sort().join('_');
 
-    useEffect(() => {
-        const fetchChatHistory = async () => {
-            try {
-                const response = await fetch(`https://zylonet-server.onrender.com/api/v1/chat/${roomName}`, {
-                    method: "GET",
-                });
-                const res_data = await response.json();
-                console.log(res_data.messages)
-                setChat(res_data.messages);
-            } catch (error) {
-                console.error("Error fetching chat history:", error);
-            }
-        };
-        fetchChatHistory();
-    }, [roomName]);
 
     useEffect(() => {
         // Handler function for incoming messages
@@ -61,6 +46,21 @@ const ChatUser = () => {
             socket.off("receive_message", handleReceiveMessage);
         };
     }, [roomName]);
+
+    useEffect(() => {
+        const fetchChatHistory = async () => {
+            try {
+                const response = await fetch(`https://zylonet-server.onrender.com/api/v1/chat/${roomName}`, {
+                    method: "GET",
+                });
+                const res_data = await response.json();
+                setChat(res_data.messages);
+            } catch (error) {
+                console.error("Error fetching chat history:", error);
+            }
+        };
+        fetchChatHistory();
+    }, [roomName, chat]);
 
     const handleSendMessage = () => {
         if (message.trim()) {
