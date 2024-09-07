@@ -15,7 +15,7 @@ const chatlist = async (req, res) => {
 
             // Map users to a dictionary for quick lookup
             const userMap = users.reduce((acc, user) => {
-                acc[user._id] = { fullName: user.fullName, username: user.username };
+                acc[user._id] = { fullName: user.fullName, username: user.username, profile: user.profile };
                 return acc;
             }, {});
 
