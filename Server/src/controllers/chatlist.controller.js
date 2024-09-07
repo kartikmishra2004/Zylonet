@@ -10,7 +10,7 @@ const chatlist = async (req, res) => {
             res.status(400).json({ message: "Error!!!" });
         }
     } catch (error) {
-        res.status(400).json({ message: "Failed to get chatlist!!" });
+        res.status(400).json({ message: "Failed to get chatlist!!", error });
     }
 }
 
