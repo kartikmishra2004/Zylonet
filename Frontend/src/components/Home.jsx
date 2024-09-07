@@ -8,7 +8,7 @@ import ChatWithAI from './ChatWithAI'
 
 const Home = () => {
 
-  const { isLoggedIn, ranPosts, user, night } = useAuth();
+  const { isLoggedIn, ranPosts, user, night, loadingPost } = useAuth();
 
   return (
     <div className={`md:ml-[15rem] ${!night ? "bg-[#2a2834]" : ""}`}>
@@ -63,7 +63,7 @@ const Home = () => {
       </div>
       <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
         <div className="columns-1 md:columns-2 xl:columns-3 gap-7 ">
-          {ranPosts.map((item) => (
+          {loadingPost ? (<div className='flex w-full justify-center items-center h-[10rem] text-2xl text-gray-700'>Loading posts...</div>) : ranPosts.map((item) => (
             <div
               key={item._id}
               className={`border-r rounded-lg border-b border-l ${!night ? "border-[#bababa]" : "border-zinc-300"}  lg:border-t ${!night ? "bg-[#3b3847]" : "bg-white"}  break-inside-avoid mb-8 relative flex flex-col justify-between leading-normal`}>

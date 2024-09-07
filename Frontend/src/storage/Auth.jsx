@@ -96,16 +96,22 @@ export const AuthProvider = ({ children }) => {
     }
 
     const [ranPosts, setRanPosts] = useState([]);
+    const [loadingPost, setLoadingPost] = useState(false);
     // Calling API for fetching random posts
     const randomPosts = async () => {
+        setLoadingPost(true);
         try {
             const response = await fetch("https://zylonet-server.onrender.com/api/v1/randomposts/", {
                 method: "GET",
             });
             const res_data = await response.json();
             setRanPosts(res_data);
+            if (response.ok) {
+                setLoadingPost(false);
+            }
         } catch (error) {
-            console.log("Failed to get posts!!")
+            console.log("Failed to get posts!!");
+            setLoadingPost(false);
         }
     }
     useEffect(() => {
@@ -175,7 +181,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('night', JSON.stringify(night));
     }, [night]);
 
-    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow, night, setNight }}>
+    return <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, updateProfile, handleDeletePost, ranPosts, handleFollow, handleUnfollow, night, setNight, loadingPost }}>
         {children}
     </AuthContext.Provider>
 
