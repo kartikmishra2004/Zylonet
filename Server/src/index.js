@@ -14,6 +14,7 @@ import { Server } from "socket.io";
 import Message from "./models/message.model.js";
 import Chat from "./models/chat.model.js";
 import chatRout from "./routes/chat.rout.js";
+import chatlistRout from "./routes/chatlist.rout.js";
 
 const app = express();
 const server = http.createServer(app);
@@ -74,8 +75,6 @@ io.on("connection", (socket) => {
     });
 });
 
-
-
 app.use(express.json());
 
 // API for Authentication
@@ -98,6 +97,9 @@ app.use("/api/v1/unfollow", unfollow);
 
 // API for Chat
 app.use("/api/v1/chat", chatRout);
+
+// API for Chatlist
+app.use("/api/v1/chatlist", chatlistRout);
 
 app.use(errorMiddleware);
 
