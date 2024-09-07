@@ -2,7 +2,7 @@ import Chat from "../models/chat.model.js";
 
 const chatlist = async (req, res) => {
     try {
-        const userId = req.user._id;
+        const userId = "66c70883fb995c799a33f10b";
         const chatlist = await Chat.find({ _id: { $regex: userId } });
         if (chatlist) {
             res.status(200).json(chatlist);
